@@ -1,0 +1,430 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[english,russian]{babel}
+\usepackage{caption}
+\usepackage{indentfirst}
+\usepackage{graphicx, xcolor}
+
+\usepackage[unicode, pdftex]{hyperref}
+\hypersetup{linkcolor=blue, urlcolor=blue, colorlinks=true}
+\usepackage{hyphenat}
+\hyphenation{объект}
+\usepackage{wrapfig}
+\usepackage[left=1.4cm,right=1.4cm,top=1.5cm,bottom=1.5cm,bindingoffset=0cm]{geometry}
+\usepackage{tocloft}    
+\usepackage{titlesec} \titlelabel{\thetitle.\quad} 
+\frenchspacing
+\makeatletter
+\renewcommand{\@biblabel}[1]{#1.} % Заменяем библиографию с квадратных скобок на точку:
+\makeatother
+\makeindex
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+    
+\parindent=1.25cm
+%\parskip=0.1cm
+
+\usepackage{physics} 
+\usepackage{siunitx} % typesets numbers with units very nicely
+\usepackage{amssymb,amsfonts,amsmath,mathtext,cite,enumerate,float}
+\usepackage{amsthm}
+
+%\usepackage[dvips]{graphicx}
+
+\newcommand{\executeiffilenewer}[3]{
+	\ifnum\pdfstrcmp{\pdffilemoddate{#1}}
+	{\pdffilemoddate{#2}} > 0 {\immediate\write18{#3}}\fi}
+\newcommand{\includesvg}[1]{
+	\executeiffilenewer{#1.svg}{#1.pdf}
+	{inkscape -z -D --file=#1.svg 
+	 --export-pdf=#1.pdf --export-latex}
+	\input{#1.pdf_tex}%
+}
+
+\usepackage{multicol}
+
+\bibliographystyle{unsrt}
+
+
+\begin{document}
+\renewcommand{\cftsecaftersnum}{.}
+\renewcommand{\cftsubsecaftersnum}{.}
+
+\renewcommand\refname{Список литературы}
+
+\theoremstyle{plain}
+\newtheorem{thm}{Теорема}[section]
+
+\theoremstyle{definition}
+\newtheorem{dfn}{Определение}[section]
+\newtheorem{cns}[thm]{Следствие}
+
+\theoremstyle{remark}
+\newtheorem{task}{Задача}[section]
+\newtheorem{ex}{Пример}[subsection]
+\newtheorem{cex}[ex]{Контрпример}
+\newtheorem{rmk}{Замечание}[subsection]
+
+\newcommand{\eqdef}{\stackrel{\mathrm{def}}{=}}
+
+\begin{center}
+\Huge{\textbf{Теоретическая механика}}
+\end{center}
+\tableofcontents
+\newpage
+\section{Обзор основных понятий и законов классической механики}
+\subsection{Механика как часть теоретической физики}
+Общая (экспериментальная) физика основана на принципе индукции и поставляет теоретической физике математические модели (физические законы). Теоретическая физика использует дедукцию, и возвращает общей физике предсказания результатов экспериментов.
+
+\begin{dfn} Механика --- наука о движении материальных объектов в пространстве и времени. \end{dfn}
+Откажемся от определения, в котором сложно объяснить слова в правой части, и будем перечислять...
+\begin{enumerate}
+\item Пространство и время независимы.
+\item Пространство трёхмерно, евклидово, однородно, изотропно.
+\item Время однородно, однонаправленно (?).
+\end{enumerate}
+С точки зрения современной физики эти положения неверны, но это представления классической физики. А как сделать их более корректными?
+\begin{enumerate}
+\item СТО $v \ll c$.
+\item КМ $\Delta l \gg \frac{\hbar}{p}$ --- длина волны де Бройля.
+\item ОТО $m \varphi \ll mc^2$, $\varphi$ --- потенциал.
+\item ВВ $t \gg t_{BB}$.
+\end{enumerate}
+
+\begin{dfn}
+Материальная точка --- тело, размерами которого при рассмотрении данного класса движение модно пренебречь.
+\end{dfn}
+\begin{dfn}
+Абсолютно твёрдое тело --- набор материальных точек, расстояния между которыми не изменяются.
+\end{dfn}
+
+\begin{task}[Задача Кэлли (?)] Какое минимальное количество связей между материальными точками необходимо установить, чтобы их система обрела жёсткость? \end{task}
+
+\subsection{Механика системы материальных точек}
+\begin{equation*}
+\vb{r}(t) = \{x(t), y(t), z(t) \}; \thickspace \mathop{\{\vb{r}_i(t)\}}\limits_{i = \overline{1{,}N}}
+\end{equation*}  
+
+\paragraph{Кинематика материальной точки.}
+$\vb{r}(t)$ --- закон движения (иногда знаем траекторию и положение точки для любого момента времени). 
+\begin{align*}
+\vb{r} &= r \vb{e}_r = \sqrt{x^2 + y^2 + z^2} \vb{e}_r, \\
+\vb{e}_r &= \frac{\vb{r}}{r} = \left\{ \frac{x}{\sqrt{x^2 + y^2 + z^2}}, \frac{y}{\sqrt{x^2 + y^2 + z^2}}, \frac{z}{\sqrt{x^2 + y^2 + z^2}} \right\};\\
+\vb{v} &= \dv{\vb{r}}{t} = \left\{\dot x, \dot y, \dot z\right\},\\
+\vb{v} &= v \vb*{\tau}.
+\end{align*}
+
+\paragraph{Криволинейные координаты.}
+\begin{align*}
+q &= (q_1, q_2, q_3), x =X(q, t), y = Y(q, t), z =Z(q, t) \Rightarrow \\
+q(t) &\Rightarrow \vb{r}(t) = \vb{r}{\vb{q}(t), t} = \left\{X(q(t), t), Y(q(t), t), Z(q(t), t)\right\}; \\
+\vb{v}(t) &= \dv{\vb{r}}{t} = \sum \pdv{\vb{r}}{q_i} \dot q_i + \pdv{\vb{r}}{t}; \\
+\vb{v}_i &= \left\{\pdv{X}{q_i} \dot q_i, \pdv{Y}{q_i} \dot q_i, \pdv{Z}{q_i} \dot q_i \right\}.
+\end{align*}
+
+\begin{equation*}
+\vb{v} = \sum v_i \vb{e}_i; (e_i, e_j) = \delta_{ij} \Rightarrow v^2 = v_1^2 + v_2^2 + v_3^2
+\end{equation*}
+
+\begin{ex}[Цилиндрические координаты] Пусть $q = (\varphi, \rho, z),$ и
+\begin{equation*}
+\begin{cases}
+x = \rho \cos \varphi   \\
+y = \rho \sin \varphi \\
+z,
+\end{cases}
+\end{equation*}
+тогда
+\begin{equation*}
+\vb{v} = \dv{t} \left\{\rho \cos \varphi, \rho \sin \varphi, z \right\} \Rightarrow
+\end{equation*}Alt+E, Alt+Q
+\begin{equation*}
+\begin{cases}
+\vb{v}_{\varphi} = \rho \dot \varphi \underbrace{\{-\sin \varphi, \cos \varphi, 0\}}_{\vb{e}_\varphi} \\
+\vb{v}_\rho = \dot \rho \underbrace{\{\cos \varphi, \sin \varphi, 0\}}_{\vb{e}_\rho} \\
+\vb{v}_z = \dot z \{0, 0, 1\},
+\end{cases}
+\end{equation*}
+значит, 
+\begin{equation*}
+(\vb{e}_\rho, \vb{e}_\varphi) = 0.
+\end{equation*}
+\end{ex}
+
+\paragraph{Ускорение.}
+\begin{align*}
+\vb{a} & \eqdef \dv{\vb{v}}{t} = \dv[2]{\vb{r}}{t} = \left\{\ddot{x}, \ddot{y}, \ddot{z} \right\} \\
+\vb{a} &= \dv{t} (v \vb*{\tau}) = \dot{v} \vb*{\tau} + \underbrace{v \dot{\vb*{\tau}}}_{= \frac{v^2}{R} \vb{n}} \\
+\vb{n} &= \frac{\dot{\vb{r}}}{\dot{\vb*{\tau}}}\\
+\abs{\dot{\vb*{\tau}}} &= \frac{v}{R}\\
+[\vb*{\tau}, \vb{n}] &= \vb{b} \thickspace \text{--- бинормаль --- по ней не может быть направлено ускорение.}
+\end{align*}
+
+
+\paragraph{Основные постулаты ньютоновской механики.}
+Сразу отметим, что количество точек в системе может быть бесконечным, или даже несчётным.
+
+\begin{enumerate}
+\item[0.] Пространство $+$ Время классические (однонаправленность времени не учитываем).
+\item Первый закон Ньютона: существуют инерциальные системы отсчёта, в которых изолированная точка движется равномерно и прямолинейно.
+
+Добавим принцип относительности Галилея, чтобы не возникало выделенных направлений из-за введения системы отсчёта: законы движения инвариантны относительно преобразования Галилея в замкнутой системе. Преобразование Галилея:
+\begin{equation}
+\begin{cases}
+t = t'\\
+\vb{r'} = \vb{r} + \vb{u}t, \qquad \vb{u} = const.
+\end{cases}
+\label{Galilean_tr}
+\end{equation}
+Система \eqref{Galilean_tr} порождает бесконечный класс инерциальных систем, и однородность восстанавливается.
+
+\item Второй закон Ньютона. Принцип детерминизма Ньютона <<сидит>> в порядке дифференциальных уравнений для описания динамики системы.
+\begin{equation*}
+\Ddot{\vb{r}}_i = \vb{f}_i (\vb{r}_1, \dots, \vb{r}_N, \vb{v}_1, \dots, \vb{v}_N, t) 
+\end{equation*}
+$6N$ свободных констант --- по две на каждую степень свободы.
+\begin{equation*}
+\begin{cases}
+\vb{r}_i (t_0) = {\vb{r}_i}_0\\
+\vb{v}_i (t_0) = {\vb{v}_i}_0,
+\end{cases}
+\end{equation*}
+существует, правда, множество меры нуль всяких исключений: диссипативные состояния равновесия, например.
+
+Второй закон Ньютона:
+\begin{equation}
+m_i \ddot{\vb{r}}_i = \vb{F}_i \left(\{\vb{r}_i\}, \{\dot{\vb{r}}_i, t\right).
+\label{Newton's_2nd_law}
+\end{equation}
+Отметим, что уравнение \eqref{Newton's_2nd_law} работает в инерциальных системах отсчёта, $m_i$ --- характеристика материальной точки, не зависящая от движения.
+
+Экспериментальный способ измерения:
+\begin{equation*}
+\begin{cases}
+m_1 a_1 = F\\
+m_2 a_2 = F
+\end{cases}
+\Rightarrow \; \frac{m_1}{m_2} = \frac{a_2}{a_1}, \qquad
+\begin{cases}
+ma_1 = F_1\\
+ma_2 = F_2
+\end{cases}
+\Rightarrow \; \frac{F_1}{F_2} = \frac{a_1}{a_2}.
+\end{equation*}
+\paragraph{Импульс.}
+\begin{align*}
+\vb{p}_i & \eqdef m_i \vb{v}_i && \text{--- момент импульса,}\\
+\vb{M}_i & \eqdef m_i [\vb{r}_i, \vb{v}_i] && \text{--- момент силы,}\\
+\vb{N}_i & \eqdef [\vb{r}_i, \vb{F}_i].
+\end{align*}
+
+\begin{cex}
+Могут быть патологические случаи.
+$m(t)$ --- ракета и реактивная сила или, например, тележка с тающим льдом: включаем массу в систему --- система с сохраняющейся массой, а потом смотрим на динамику подсистем. $\vb{F}$ может зависеть от разных других вещей, когда мы пытаемся описать механическим немеханические явления: $m(\dot{\vb{r}})$ --- квазиклассические частицы в твёрдом теле, тела в СТО, $m(\ddot{\vb{r}})$ --- присоединённая масса в гидродинамике, $F(\dddot{\vb{r}})$~--- радиационное трение~--- электрон летает вокруг ядра по боровской  орбите, излучает электромагнитные волны как любой движущийся заряд, теряя таким образом энергию, и падает на ядро, нарушается принцип детерминизма Ньютона --- пытаемся описать электромагнитную задачу механическим языком.
+\end{cex}
+
+\item
+Третий закон Ньютона. Чтобы его определить, придётся все силы разбить на внутренние и внешние.
+\begin{equation*}
+\vb{F}_i = \vb{F}_i^{(e)} (t, \vb{r}_i) + \sum \vb{F}_{ij}^{(i)} (t, \vb{r}_i, \vb{r}_j), 
+\end{equation*}
+внешняя сила может зависеть только от координаты точки (и времени), а все оставшиеся силы~--- внутренние. Для <<всех оставшихся>>  предположили, что каждая из точек действует на $i$-ю точку независимо от всех остальных. И обрываем ряд, то есть считаем, что силы, в которой есть $\vb{r}_i, \vb{r}_j$ и $\vb{r}_k$ уже нет~--- приближение парных взаимодействий, и третий закон Ньютона справедлив только при  его применении. Формулировка третьего закона Ньютона:
+
+\begin{figure}[h]\centering
+\def\svgwidth{9cm}
+\includesvg{pic3}
+\end{figure}
+                                                                      
+\begin{equation}
+\begin{cases}
+\vb{F}_{ij}^{(i)} + \vb{F}_{ji}^{(i)} = 0 \label{3d_N's-law}\\
+[\vb*{\rho}_{ij}, \vb{F}_{ij}] = 0 
+\end{cases}
+\end{equation}
+
+
+\begin{cex}
+Третий закон Ньютона справедлив только для объектов, которые являются материальными точками, но существуют объекты нулевого размера, не являющиеся материальными точками: например, электрический диполь, у которого есть вращающий объект, который может ещё и энергию забирать...
+\end{cex}
+\begin{cns}
+
+
+\begin{enumerate}
+\item \begin{equation*}
+ \vb{F} = \sum \limits_{i = 1}^N \vb{F}_i^{(e)} = \vb{F}^{(e)} \Rightarrow \left( \sum m_i \right) \cdot \vb{\ddot{R}} = \vb{F} = \vb{F}^{(e)}, \vb{R} = \frac{\sum m_i \vb{r}_i}{\sum m_i},
+\end{equation*}
+то есть центр масс системы материальных точек  с попарным взаимодействием движется так же, как одна точка с суммарной массой системы в поле равнодействующей всех внешних сил.
+\begin{ex}
+Центр масс двигавшегося по параболе и разорвавшегося в некоторой точке снаряда продолжит движение по параболе.
+\end{ex}
+\begin{cex}
+У Карлсона, летящего по параболе, раскрылся парашют...
+\end{cex} 
+\item \begin{equation*}
+\vb{N} = \sum \vb{N}_i = \sum \vb{N}_i^{(e)},
+\end{equation*}
+то есть суммарный момент сил, действующих на систему с попарным взаимодействием, равен суммарному моменту внешних сил. Как это можно доказать?
+\begin{equation}
+[\vphantom{\vb{F}_{j}}\vb{r}_i, \vb{F}_{ij}] + [\vphantom{\vb{F}_{j}}\vb{r}_j, \vb{F}_{ji}] = [\vphantom{\vb{F}_{j}}\vb{r}_i - \vb{r}_j, \vb{F}_{ij}] = 0, \label{ftr_3d_N's-law}
+\end{equation}
+то есть сначала воспользовались первой часть третьего закона Ньютона \eqref{3d_N's-law}, чтобы поменять знак, а потом --- второй, чтобы приравнять к нулю.
+\end{enumerate}
+\end{cns}
+\end{enumerate}
+\newpage
+\paragraph{Законы сохранения в механике Ньютона.}
+\subparagraph{Закон сохранения импульса.}
+
+\begin{gather*}
+\vb{p} \eqdef \sum m_i \vb{v}_i \Rightarrow\\
+\dot{\vb{p}} = \vb{F} = \vb{F}^{(e)},
+\end{gather*}
+первый переход осуществлён в силу II закона Ньютона, второй --- III закона Ньютона.
+\begin{equation*}
+\vb{p} = const \Leftarrow \sum \vb{F}_i^{(e)} = 0,
+\end{equation*}
+согласно III закону Ньютона.
+
+\subparagraph{Закон сохранения момента импульса.}
+\begin{gather*}
+\vb{M} \eqdef \sum m_i [\vb{r}_i, \vb{v}_i];\\
+\dot{\vb{M}} = \sum m_i \bigl\{ [\vb{r}_i, \dot{\vb{v}}_i] + [\dot{\vb{r}_i}, \vb{v}] \bigr\} = \vb{N} = \vb{N}^{(e)};\\
+\begin{cases}
+\sum \vb{N}_i^{(e)} = 0,\\
+\text{III закон Ньютона}
+\end{cases}
+\Rightarrow \vb{M} = const
+\end{gather*}
+\subparagraph{Закон сохранения энергии.}
+\begin{gather*}
+m \ddot{\vb{r}} = \vb{F} \qquad |\cdot \vb{v} \Rightarrow\\
+m \vb{v} \dv{\vb{v}}{t} = m \left( v_x \dot{v}_x + v_y \dot{v}_y + v_z \dot{v}_z \right) = \frac{m}{2} \cdot2 \dv{t} \left( v_x^2 + v_y^2 + v_z^2 \right) = \dv{T}{t} \Rightarrow\\
+T = \frac{mv^2}{2} 
+\end{gather*}
+\begin{figure}[h]\centering
+\def\svgwidth{7cm}
+\input{pic4.pdf_tex}
+\caption{Траектория материальной точки.}
+\end{figure}
+\begin{gather}
+\dv{T}{t} = \vb{F} \cdot \vb{v}\\
+\int \limits_{t_1}^{t_2} \dv{T}{t} \, dt = T(2) - T(1) = \int \limits_{t_1}^{t_2} \vb{F} \cdot \underbrace{\vb{v} \, dt}_{d \vb{r}} = \int \limits_{\vb{r}_1}^{\vb{r}_2} \vb{F} \, d\vb{r} = \int \limits_1^2 \, dA
+\end{gather}
+
+
+\begin{dfn}
+Сила является потенциальной, если существует потенциал $U(\vb{r}, t)$.
+\begin{gather}
+\vb{F} = - \dv{U}{\vb{r}} = \left\{ -\pdv{U}{x}, -\pdv{U}{y}, -\pdv{U}{z} \right\} = -\nabla U\\
+rot \, \vb{F} \equiv 0 \Leftrightarrow [\vphantom{\vb{F}} \nabla, \vb{F}] = 0,
+\end{gather}
+но вся эта наука справедлива в односвязной стягиваемой области. Если сила потенциальная, то 
+\begin{equation*}
+\oint \vb{F} (\tau, r)\, d\vb{r} = 0
+\end{equation*}
+\end{dfn}
+\begin{dfn}
+\begin{equation}
+\pdv{U}{t} = 0 \Rightarrow \text{сила консервативная (стационарная потенциальная).}
+\end{equation}
+\end{dfn}
+\begin{dfn}
+\begin{gather}
+dA = 0,\\
+\intertext{значит, сила гироскопическая (сила Кориолиса, магнитная составляющая силы Лоренцa).}
+\left(\vb{F}, \vb{v}\right) = 0
+\end{gather}
+\end{dfn}
+\begin{dfn}
+Диссипативная сила:
+\begin{equation}
+dA < 0
+\end{equation}
+\begin{ex}
+\begin{equation}
+\vb{F} = -k (t, \vb{r}, \vb{v}) \cdot \vb{v}, \quad k>0
+\end{equation}
+\end{ex}
+\end{dfn}
+Запишем выражение для силы $\vb{F}$, используя введённые определения и считая, что они покрывают все силы:
+\begin{equation}
+\vb{F} = - \nabla  U (\vb{r}, t) + \vb{F}_g + \vb{F}_d
+\end{equation}
+Введём понятие полной энергии:
+\begin{equation}
+T + U = E.
+\end{equation}
+Получим дифференциалы потенциальной и кинетической энергии:
+\begin{gather}
+\dv{T}{t} = - \pdv{U}{\vb{r}} \vb{v} + \vb{F}_d \cdot \vb{v}; \label{dT}\\
+\dv{U}{t} = \pdv{U}{t} + \pdv{U}{\vb{r}} \dot{\vb{r}}; \label{dU}
+\end{gather}
+Сложим \eqref{dT} и \eqref{dU}:
+\begin{equation}
+\dv{E}{t} = \pdv{U}{t} + \vb{F}_d \cdot \vb{v},
+\end{equation}
+то есть для выполнения закона сохранения энергии требуется, чтобы все потенциальные силы были консервативными, и отсутствовали диссипативные силы, а полная энергия материальной точки может изменяться за счёт работы и диссипативных сил и работы потенциальных неконсервативных сил.
+
+\subparagraph{Закон сохранения энергии для системы материальных точек.}
+\begin{gather}
+m_i \ddot{\vb{v}}_i  = \vb{F}_i \qquad |\cdot \vb{v}_i, \sum\limits_i \quad i = 1, N\\
+\dv{T}{t} = \sum \limits_{i=1}^N \vb{F}_i \vb{v}_i ; \quad T = \sum \limits_{i=1}^N \frac{m_i v_i^2}{2}\\
+\vb{F}_i = \vb{F}_i^{(e)} + \sum_{i \neq j} \vb{F}_{ij}\\
+F_i^{(e)} = - \pdv{U^{(e)} (\vb{r}_i)}{\vb{r}_i} + \vb{F}^{(e)}_{g\;i} + \vb{F}^{(e)}_{d\;i}, 
+\end{gather}
+то есть для каждой внешней силы проделали то же, что делали в случае одной материальной точки. И посчитаем:
+\begin{gather}
+\sum  \vb{F}_i^{(e)} \cdot \vb{v}_i = - \sum \pdv{U^{(e)}}{\vb{r}_i} \cdot \dot{\vb{r}}_i + \sum  \vb{F}_{d\;i}^{(e)} \cdot \vb{v}_i, \label{sum_F^e}\\
+\intertext{введём $U^{(e)}$:}
+U^{(e)} = \sum_{i=1}^N U^{(e)}_i (\vb{r}_i), \text{тогда}\\
+\dv{U^{(e)}}{t} = \sum \pdv{U^{(e)}}{\vb{r}_i} \cdot \dot{\vb{r}}_i + \pdv{U^{(e)}}{t}. \label{dU^e}\\
+\intertext{Выразим первое слагаемое в правой части \eqref{sum_F^e} из  \eqref{dU^e} и соберём полные производные энергии по времени вместе:}
+\dv{t}\left(T + U^{(e)}\right) = \pdv{U^{(e)}}{t} +  \sum  \vb{F}_{d\;i}^{(e)} \cdot \vb{v}_i.
+\end{gather}
+
+\begin{gather}
+U_{ij} = U_{ij} (\abs{\vb{r}_j - \vb{r}_i}) = U_{ij} \rho_{ij} \Rightarrow U_{ij} = U_{ji};\\
+\vb{F}_i = - \pdv{U_{ij}}{\vb*{\rho}_{ij}} \pdv{\vb*{\rho}_{ij}}{\vb{r}_i} = + \pdv{U_{ij}(\vb*{\rho}_{ij})}{\vb*{\rho}_{ij}}, \vb{F}_j = - \pdv{U_{ij}}{\vb*{\rho}_{ij}} \pdv{\vb*{\rho}_{ij}}{\vb{r}_j} = - \pdv{U_{ij}(\vb*{\rho}_{ij})}{\vb*{\rho}_{ij}};\\
+\vb{F}_{ij} = - \pdv{\vb{r}_i} U_{ij} (\vb{r}_i, \vb{r}_j);\\
+\sum_{\substack{i, j\\ i \neq j}} \vb{F}_{ij} \cdot \vb{v}_i =\sum (\underbrace{\vb{v}_i - \vb{v}_j}_{-\dot{\vb*{\rho}}_{ij}} ) \frac{\partial U_{i j}}{\partial \rho_{i j}} = -\dv{t} U^{(i)};\\
+U^{(i)} = \frac{1}{2} \sum_{\substack{i, j = 1\\ i \neq j}}^N U^{(i)} (\vb*{\rho}_{ij}) \Rightarrow\\
+\boxed{\dv{t}(T + U^{(e)} + U^{(i)}) = \pdv{U^{(e)}}{t} + \sum \vb{F}_{d\; i}^{(e)}}
+\end{gather}
+\newpage
+З.\,С.\,Э. $E = const$:
+\begin{enumerate}
+\item Внешние силы консервативные и/или гироскопические.
+\item Нет диссипативных сил.
+\item Внутренние силы специальной структуры: отвечают глобальным законам симметрии пространства. $U^{(i)}(\abs{\vb{r}_i - \vb{r}_j})$.
+\end{enumerate}
+\begin{ex}
+\begin{equation*}
+E_{\text{Л}} = - e \nabla \varphi + \frac{e}{c} [\vb{v}, \vb{B}]
+\end{equation*}
+\end{ex}
+\subparagraph{Интеграл движения.}
+\begin{equation}
+I(t, {\vb{r}_i}, {\vb{v}_i}) = const
+\end{equation}
+ (???)
+ 
+ \subparagraph{Теорема Нётер}
+ (???)
+ 
+ \begin{ex}
+ \begin{gather*}
+ \begin{cases}
+ \vb{F} = \frac{\alpha}{x^2 + y^2} \vb*{\tau}, \\
+ \vb*{\tau} = \{-y, x, 0\},\\
+ x = R \cos{\omega t},\\
+ y = R \sin{\omega t},\\
+ z =0 
+ \end{cases}
+ \Rightarrow\\
+ A = \frac{\alpha}{R^2} \int\limits_0^T(\vb*{\tau}, \vb{v})\, dt =   \frac{\alpha}{R^2} \int\limits_0^T (R^2 \omega \sin^2{\omega t} + R^2 \omega \cos^2{\omega t}) \, dt = \frac{\alpha}{R^2} R^2 \omega \int\limits_0^T \, dt = \alpha \omega T = 2 \pi \alpha
+ \end{gather*}
+ \end{ex}
+\newpage
+%\bibliography{library.bib}
+
+\end{document}
