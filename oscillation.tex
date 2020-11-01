@@ -1,0 +1,314 @@
+\subsection{Линейные колебания в лагранжевых системах}
+Начнём потихонечку искать решения уравнений Лагранжа.
+\subsubsection{Одномерное движение}
+Пусть нам дана одномерная (s =1) натуральная лагранжева система. Будем временно использовать букву $x $ вместо $q$. Имеем полином не выше второй степени (в силу натуральности системы):
+\[L(t, x, \dot{x})  = \frac{1}{2} \alpha(x) \dot{x}^2 + \beta(x) \dot{x} - U(x),\]
+уже есть некоторая нестыковка, потому что $\alpha, \beta$ могут зависеть от времени --- сделаем упрощения.
+\begin{enumerate}
+\item $\pdv{L}{t} = 0.$
+\item Член линейный по скорости --- гироскопическая сила, но в одномерном случае никаких гироскопических сил не существует, поэтому можем этот член выкинуть, потому что
+\[\beta \dot{x} = \dv{t} \int \beta \dd{x}.\]
+\begin{dfn}[Состояние равновесия]
+Состояние равновесия --- решение уравнения движения --- тождественная константа.
+$x = x_0 = const (\dot{x} = \ddot{x} = \dots = 0$
+\end{dfn}
+\item Диссипативных сил нет, то есть $\dv{t} \pdv{L}{\dot{x}} = \pdv{L}{x}$
+\end{enumerate}
+Тогда 
+\[\pdv{L}{\dot{x}} = \alpha(x) \dot{x} \Rightarrow \alpha \ddot{x} + \alpha' \dot{x}^2 = \pdv{L}{x} = \frac{1}{2} \alpha' \dot{x}^2 - U' \].
+\begin{gather}
+ \alpha(x) \dot{x} + \hlf \pdv{\alpha}{x} \dot{x}^2 = - \pdv{U}{x}\\ \intertext{ получили уравнение двжиения. Подставим условие существования стационарного решения в точке $x_0$:}
+ \pdv{U(x_0)}{x} = 0\\
+ \intertext{Опишем формально двжиение в окрестности точки $x_0$:}
+x = x_0 + q \Rightarrow \alpha(x) = \alpha(x_0) + \dots; \quad \alpha(x_0) = m\\
+U(x) = U(x_0) + U'(x_0)q + \hlf U'' (x_0)^2 + \approx \hlf k q^2; \quad k = U'' (x_0) \Rightarrow\\
+ L = \hlf m \dot{q}^2 - \hlf kq^2\\
+ \intertext{Возникает вопрос, что значит "мало". Поэкспериментировав, можно проверить, что неважно, где делать разложение: в функции Лагранжа или в уравнениях движения. Если будем учитывать следующие поправки, то у нас буду появляться следующие поправки к силе, которая уже учтена, и они по сравнению с ней должны быть малы. Второе замечание: коэфффициенты $k$ и $q$ должны быть невырожденными, иначе должны учитывать следующие члены в разложении, но тогда колебания уже будут нелинейными. Перепишем лагранжиан в эквивалентной форме:}
+L = \hlf m \dot{q}^2 - \hlf kq^2 = \frac{m}{2} (\dot{q}^2 - \omega^2 q^2, \quad \omega^2 = k/m\\
+\intertext{соответствующее уранение движения}
+\ddot{q} + \omega^2 q =0\\
+\intertext{ линейное ОДУ с постоянными коэффициентами, порождаемое квадратичной формой. Есть стандартный способ решения таких уравнений:}
+q = Ce^{\lambda t} \Rightarrow \lambda^2 C e^{\lambda t} + \omega^2 C e^{\lambda  t} = 0\\ \Rightarrow \lambda^2 + \omega^2 = 0 \Leftrightarrow \lambda = \pm i \omega \Rightarrow\\
+q = C_1 e^{i \omega t} + C_2 e^{-i \omega t}\\  
+\intertext{оптребуем}
+q \in \Re \Rightarrow C_2 = C_1^* \Leftrightarrow q = C_1 e^{i \omega t} + \text{к. с.} = 2\Re C_1 e^{i\omega t} = \Re C e^{i\omega t}, \quad C \in \mathbb{C}\\
+C = c e^{i \varphi} \Rightarrow q = c \cos(\omega t + \varphi)
+\end{gather}
+\begin{thm}
+\[\Hat{D} q = 0, \quad \Hat{D} \in \mathbb{R},\]
+тогда мы всегда можем рассмотреть некое решение $X \in \mathbb{C},\; \Hat{D} X = 0$, автоматически
+\begin{equation}
+\begin{cases}
+\Hat{D} (\Re X) = 0\\
+\Hat{D} (\Im X) = 0
+\end{cases}
+\end{equation}
+\end{thm}
+\begin{proof}
+\begin{align}
+\Hat{D}& (\Re X + i \Im X) = 0 \Rightarrow\\
+\Hat{D}& (\Re X) + i \Hat{D} (\Im X) = 0
+\end{align}текст крупнее 12pt латех
+\end{proof}
+\begin{gather}
+q= Ce^{\lambda t}\\
+\ddot{q} + \omega^2 q = Ce^{\lambda t} (\lambda^2 + \omega^2) = 0 \Rightarrow q = Ce^{i \omega t} \Rightarrow q = \Re C e^{i \omega t}\\
+\omega^2 > 0\quad q = c \cos (\omega t + \varphi)  = a \sin \omega t + b \cos \omega t\\
+\intertext{ через комплексные амплитуды:}
+C = c e^{i  \varphi}
+\intertext{Квадрат омеги больше нуля, когда ка больше нуля, потому что м мы получаем из законов нбютона и оно больше нуля, а вот ка выползает из потенциала, и может быть меньше нуля. Положительный квадрат частоты отвечает минимуму потенциальной энергии. }
+\omega^2 < 0 \quad \lambda = \pm \sqrt{\abs{\omega}} \in \mathbb{R}\\
+q = c_1 e^{\lambda t} + c_2 e^{- \lambda t} = a \sh \lambda t + b \ch \lambda t \underset{H/w}{\eqq{?}} c \sh(\lambda t + \varphi) \underset{H/w}{\eqq{?}} \tilde{c} \ch (\lambda t + \varphi)\\
+\omega = 0 \quad q = c_1 t + c_2 \quad \ddot{q} = 0
+\end{gather}
+Продемонстрируем всю мощь метода комплексных амплитуд. В этих нескольких примерах будем выходить за рамки консервативных ($L = \frac{m}{2} (\dot{q}^2 - \omega^2 q^2),\; H = \frac{m}{2}(\dot{q} + \omega^2 q^2) = const$) систем. 
+\begin{ex}[Осциллятор с трением.]
+\begin{gather}
+\ddot{q} + \omega_0 q + 2\gamma \dot{q} = 0,\\ \intertext{то есть рассматриваем линейный осциллятор с трением.}
+q = C e^{\lambda t} \Rightarrow (\underbrace{\lambda^2 + \omega_0^2 + 2\gamma \lambda}_{0}) C e^{\lambda t} = 0\\
+\lambda = -\gamma \pm \sqrt{\gamma^2 - \omega_0^2} = -\gamma \pm i\sqrt{\omega_0^2 - \gamma^2},
+\intertext{в комплексном ваиде записали, чтобы был перезод к незатухающему осцуиллятору.}
+q = c e^{-\lambda t} \cos(\sqrt{\omega_0^2 - \gamma^2}t + \varphi),\\
+\intertext{получили общее решение. $H/w\; \omega_0 = \gamma,\; \omega_0 < \gamma,\; \omega_0 > \gamma\, \text{(движение в меду).}$}
+\end{gather}
+\end{ex}
+\begin{ex}[Осциллятор, на который действует внешняя сила.]
+\begin{gather}
+\ddot{q} + \omega^2 q = f(t)\\
+\dot{q} + i\omega t = a(t) e^{i \omega t},\label{pl_h_1}\\
+ a(t) \in \mathbb{C} \Rightarrow q(t) = \frac{1}{\omega} \Im a e^{i \omega t}\\
+\begin{cases}
+\dv{t}\left(\dot{q} + i\omega t \right) = (\dot{a} +  i \omega a)e^{i \omega t}\\
+\eqref{pl_h_1}* i\omega: \quad - i\omega \dot{q} + \omega^2 q = -i \omega a e^{i \omega t}
+\end{cases}
+\Rightarrow \ddot{q} + \omega^2 q = \dot{a} e^{i \omega t} = f(t) \Rightarrow a(t) = \int^t f(t) e^{-i \omega t} \dd{t}\\
+\intertext{Обратим ванимание, что $a(t)$ очень похоже на преобразование Фурье.}
+\end{gather}
+\end{ex}
+
+\begin{thm}[Появляющаяся сила.]
+Пусть в некоторый момент на осцилллятор подействовала сила с конечным спектром (см. рисунок) $\int\limits_{-\infty}^{+\infty} f e^{-i \omega t} \dd{t} = F,$ тогда $H(+\infty) - H(-\infty) = \frac{m}{2} \abs{F}^2,$\\ где~$F$~--- спектральная компонента силы.
+\end{thm}
+\begin{proof}
+H/w
+\end{proof}
+\begin{task}
+\begin{gather}
+\ddot{q} + 2\gamma \dot{q} + \omega_0^2 q = f(t)
+\end{gather}
+В частности, когда сила сама осциллирует: $f (t) = A \cos \omega t \Rightarrow q(t) = ?$.
+\end{task}
+
+\subsubsection{Многомерные системы}
+\begin{gather}
+L = \sum_{i, j} \hlf \alpha_{ij}(x) \dot{x}_i \dot{x}_j + \sum_i \beta_i(x)\dot{x}_i - U(x)
+\end{gather}
+Построим уравнение движения: скажем, что $x$ --- тождественная константа отвечает случаю локального экстремума функции $U(x)$:
+\[x = x_0 = const \Leftrightarrow \pdv{U(x_0)}{x_i} = 0, \quad \forall i =\overline{1,s}\]
+\begin{align}
+x = x_0 + q \Rightarrow\; & \alpha_{ij}(x) \approx m_{ij} = \alpha{ij} (x_0) \\
+&U(x) \approx \sum_{i, j} \hlf k_{ij} q_i q_j; \quad k_{ij} = \pdv{U(x_0)}{x_i}{x_j}
+\end{align}
+Что можем сказать про коэффициенты $m_{ij}, k_{ij}$?
+\begin{enumerate}
+\item $m_{ij}$ симметричная ($m_{ij} = m{ji}$) и положительно определённая, $\alpha$ --- положительно определённая квадратичная форма, потому что произошла из кинетической энергии, и матрица постоянных коэффициентов $m$ унаследовала эти свойства.
+\item $k_{ij} = k_{ji}:$ появилась по определению как смешанная производная, положительная определённость не гарантируется (достигается в случае локального минимума потенциала). 
+\end{enumerate}
+Осталось рассмотреть гироскопические силы. К полной производной, как в одномерном случае они сводиться не обязаны. Заметим, что 
+\begin{gather}
+\sum_i \beta_i(x_0) \dot{x}_i = \dv{t} (\sum \beta_i (x_0) x_i),\; \text{поэтому}\\
+\beta_i(x) \approx \not{\beta_i(x_0)} + \sum_j \pdv{\beta_i(x_0)}{x_j} q_j; \quad g_{ij} = \pdv{\beta_i(x_0)}{x_j},
+\end{gather}
+подставим это всё в лагранжиан:
+\begin{equation}
+\boxed{L = \sum_{i, j = 1}^s \lbrace \hlf m_{ij} \dot{q}_i \dot{q}_j + g_{ij} q_j \dot{q}_i - \hlf k_{ij} q_i q_j \rbrace}. \label{Lagr_osc}
+\end{equation}
+\begin{ex}[$g_{ij} = 0$]
+Рассмотрим лагранжиан \eqref{Lagr_osc} в частном случае, когда нет гиротропных сил, то есть$g_{ij} = 0$:
+\begin{equation}
+L = \sum_{i, j = 1} \hlf m_{ij} \dot{q}_i \dot{q}_j  - \hlf k_{ij} q_i q_j.
+\end{equation}
+Его можно рассматривать как две квадратичные формы, соответствующие двум слагаемым: первая симметричная и положительно определённая, вторая симметричная. Теорема из линейной алгебры утверждает, что такие кв. формы диагонализируемы одновременно.
+\begin{thm}
+$$
+\left\{
+\begin{array}{rcl}
+\text{симм.$(+)$}\\
+\text{симм.}
+\end{array}
+\right.
+\Rightarrow \text{всегда диагонализуемы одновременно!}
+$$
+То есть $\exists\; \text{линейное преобразование}\; a_{ik}\; |\; q_i = \sum_i a_{ik} \theta_k, \dot{q}_i = \sum a_{ik} \dot{\theta}_k.$
+\end{thm}
+ тогда
+\begin{equation}
+L = \sum^s_k \lbrace \hlf m_k \dot{\theta}_k^2 - \hlf k_k \theta_k^2 \rbrace = \sum_k \frac{m_k}{2} \lbrace \dot{\theta}_k^2 - \omega^2_k \theta_k^2 \rbrace, \label{Lagr_ex_osc}
+\end{equation}
+где $\omega_k^2 = k_k / m_k,$ то есть система распадается на $s$ штук невзаимодействующих подсистем, каждая из которых есть  одномерный гармонический осциллятор.
+Уравнение движения соответствующее \eqref{Lagr_ex_osc}:
+\begin{gather}
+\ddot{\theta}_k + \omega^2_k \theta_k = 0 \Rightarrow\\
+\theta(t) = C_k \cos (\omega t + \varphi_k)  \approx \Re C_k e^{i \omega_ kt}
+\end{gather}
+\begin{dfn}
+$\{\omega_k\}$ --- спектр нормальных частот $\omega_k,\; k = \overline{1, s}.$
+\end{dfn}
+\begin{dfn}
+$\{\theta_k\}$ --- нормальные координаты.
+\end{dfn}
+Как выглядит решение? 
+\begin{dfn}
+Частное решение при $\theta_k = 0,$ кроме $k = k^* \Rightarrow$
+\begin{equation}
+q_j = a_{jk^*} \theta_{k^*}(t) 
+\end{equation}
+называют нормальными колебаниями.
+\end{dfn}
+Общее решение:
+\begin{equation}
+q_j (t) = \sum_{k=1}^s a_{jk} \theta_k (t).
+\end{equation}
+\begin{rmk}
+Если мы возбудили одно нормальное колебание, то каждая степень свободы колеблется в одной и той же фазе. То есть, если у нас есть сложная многомерная система, и одна степень свободы проходит через ноль или экстремум, то остальные степени свободы тоже проходят через ноль или экстремум соответственно.
+\end{rmk}
+\begin{rmk}
+Если мы живём на дне потенциального рельефа, то в \eqref{Lagr_ex_osc} две положительно определённые квадратичные формы, значит, $\omega_k^2 > 0\; \forall k,$ и у нас действительно колебания, то есть можем получить решения в виде синусов и косинусов, а не только экспонент.
+\end{rmk}
+\end{ex}
+Построим уравнение движения для лагранжиана \eqref{Lagr_ex_osc}:
+\begin{gather}
+\pdv{L}{\dot{q}_k} =  \{ \frac{1}{2} m_{ik} \dot{q}_i + \frac{1}{2} m_{kj} \dot{q}_j + g_{kj}q_j \} = \sum_i \{ m_{ik} \dot{q}_i + g_{ki} q_i\}, \label{pdv_L_dotq_osc}\\
+\pdv{L}{q_k} = \sum \{ g_{ik} \dot{q}_i - k_{ik} q_i \} !!!!! \Rightarrow \label{pdv_L_qk}\\
+\dv{t}\pdv{L}{\dot{q}_j} - \pdv{L}{q_j} = 0 \Rightarrow \sum_i \{ m_{ij} \ddot{q}_i + (g_{ij} - g_{ji})\dot{q}_i + k_{ij} q_i \} = 0.
+\end{gather}
+\begin{rmk}
+же и жи же жи и
+\end{rmk}
+Ищем решение в виде
+\begin{equation}
+q_i = \Re C_i e^{\lambda t}, 
+\end{equation}
+тогда
+\begin{gather}
+\Re \sum_i \{m_{ij} \lambda^2 + G_{ij} \lambda + k_{ij} \} C_i e^{\lambda t} = 0 \Leftrightarrow\\
+\sum_i \{m_{ij} \lambda^2 + G_{ij} \lambda + k_{ij} \} C_i = 0. \label{eq_lambda}\\
+\intertext{Эта линейная однородная алгебраическая система имеет невырожденное решение, когда детерминант матрицы её коэффициентов равен нулю:}
+\det \left( m_{ij} \lambda^2 + G_{ij} \lambda + k_{ij} \right) = 0\; \text{--- характеристическое уравнение.}
+\end{gather}
+Поразмышляем о структуре решения. По размерности $P_{2s} (\lambda) =0,$ плюс, если $\lambda$ --- корень, то $\lambda^*$ --- тоже корень, так как $P_{2s} \in \mathbb{R},$ то есть все коэффициенты этого полинома действительные. На самом деле, уравнение движения консервативной системы накладывает ещё одно ограничение, и если расписать детерминант, то  можно получить, что решение имеет вид
+$P_s (\lambda^2) = 0.$ Свойство чётности степеней --- свойство обратимости времени. Покажем, что решения действительно идут парами. Пусть $\lambda$ --- корень исходного характеристического уравнения, рассмотрим это же уравнение относительно $-\lambda$:
+\begin{gather}
+\det \left(m_{ij} (-\lambda)^2 +  G_{ij}(- \lambda) + k_{ij} \right) \Leftrightarrow\\
+\det \left(m_{ij} \lambda^2 +  G_{ji} \lambda + k_{ij} \right) \Leftrightarrow\\
+\det \left(m_{ji} \lambda^2 +  G_{ji} \lambda + k_{ji} \right) \label{new_det},\\
+\intertext{поскольку $m_{ji}$ и $k_{ji}$ симметричные, и мы получили уравнение, выполняющееся тождественно, потому что $\lambda$ --- корень --- свойство антисимметричности члена, отвечающшего за гиротропию. А это означает, что $-\lambda$ --- тоже корень, что в точности и означает, что характеристическое уравнение имеет вид}
+P_s(\lambda^2) =0.
+\end{gather}
+Для консервативной системы каждый корень порождает ещё три:
+\begin{equation}
+\lambda \longrightarrow \lambda^*, -\lambda, -\lambda^*.
+\end{equation}
+
+Поразмышляем, при каких условиях реализуются устойчивые колебания, а не какие-то экспоненты, описывающие неустойчивые состояния равновесия. Вернёмся к \eqref{eq_lambda}. Для анализа таких уравнений существует стандартный приём: умножим каждое уравнение на $C_j^*$, учтём, что
+\begin{gather}
+C_i C_j^* = (c_i' + i c_i'')(c_j' - i c_j'') = (\underbrace{c_i' c_j' + c_i''c_j''}_{S_{ij}}) + i(\underbrace{c_i'' c_j' - c_i' c_j''}_{A_{ij}}),\\
+\intertext{•:}
+\sum_{i, j} \boxed{m_{ij} S_{ij} \lambda^2 + iG_{ij} A_{ij} \lambda + k_{ij} S_{ij} = 0}
+\end{gather}
+\begin{enumerate}
+\item гиротропии нет $k_{ij} (+); G_{iJ} = 0 \Rightarrow \lambda^2 = - \frac{k_{ij} S_{ij}}{m_{ij} S_{iJ}} < 0 \Rightarrow \lambda = \pm i\omega$ --- ситуация, когда существуют нормальные частоты и нормальные колебания в смысле именно колебаний.
+\item Нет $(+) k_{ij} \Rightarrow \lambda^2 > 0 \Rightarrow \pm \lambda \Rightarrow c_1 e^{\lambda t} + c_2 e^{-\lambda t}$ --- состояние равновесия типа седло.
+\item Можно показать, что гиротропия не может разрушить устойчивое состояние равновесия. $k_{ij}(+) \& G_{iо} \neq 0 \Rightarrow \lambda^2 < 0,$ то есть колебания устойчивые.
+\end{enumerate}
+
+Допустим, что мы научились решать характеристическое уравнение. Получим общее решение уравнения движения лагранжевой системы вблизи положения равновесия.
+\begin{align}
+P_s (\lambda^2) = 0 \Rightarrow \{&\lambda^2_k\} k=\overline{1, s}\\
+&\lambda^2_k < 0 \Rightarrow \lambda_k = \pm i\omega_k\\
+q_j^{(k)} &= \Re C_{jk} e^{i\omega_k t}\\
+\end{align}
+\begin{align}
+\sum_{i=1}^s \left( m_{ij} \lambda^2 + G_{ij} \lambda + k_{ij} \right) C_i = 0 \quad j=\overline{1, s} \Rightarrow C_{jk} = a_{jk} e^{i \varphi_{jk}} &B_k\\
+&\forall B_k = b_k e^{i\varphi_{0_k}}
+\end{align}
+Строим общее решение для $q,$ которое есть сумма всех нормальных колебаний:
+\begin{align}
+q_ j= \sum_{k=1}^s q_j^{(k)} &= \sum_k \Re b_k a_{jk} e^{i\omega_k t + i\varphi_{jk} + i \varphi_{0_k}}\\
+\intertext{$\varphi_{jk} = 0,$ если $G = 0$ (нет гиротропии), тогда}
+q_j &= \sum_k a_{jk} \underbrace{\Re B_k e^{i \omega_k t + i \varphi_{0_k}}}_{\theta_k (t)},\\
+\intertext{то есть свели ответ к предыдущему.}
+\end{align}
+Вообще
+\begin{equation}
+q_j = \sum_k \Re \left\{B_k C_{jk} e^{i\omega_k t} \right\}.
+\end{equation}
+Рассмотрим пару простых примеров.
+\begin{ex}[Чашечка]
+Пусть у нас есть движение в поле тяжести в окрестности минимума какой-то ямки $z = h(x, y).$ Заметим, что если $x =y = 0$ отвечают $\min h(x, y),$ то 
+\begin{gather}
+z = h(x, y) = \frac{x^2}{2\rho_1^2} + \frac{y^2}{2\rho_2^2} + \dots \quad \rho_{1, 2}\;\text{--- главные радиусы кривизны.}\\
+\intertext{Составим лагранжиан:}
+L = T - U = \frac{m}{2} \left(\dot{x}^2 + \dot{y}^2 + \dot{z}^2\right) - mg\left( \frac{x^2}{2\rho_1^2} + \frac{y^2}{2\rho_2^2}\right), \label{lagrangian_yamka}\\
+\intertext{$\dot{z}^2$ нас не интересует, потому что речь идёт о малых колебаниях, поэтому \eqref{lagrangian_yamka} можно переписать в виде}
+L = \frac{m}{2} \left\{\dot{x}^2 - \Omega_1^2 x^2 + \dot{y}^2 - \Omega_2^2 y^2 \right\}, \quad \Omega_{1, 2} = \frac{g}{\rho_{1, 2}^2}.\\
+x = a \cos (\Omega_1 t + \varphi_1),\\
+y = b \cos (\Omega_2 t + \varphi_2), \text{и эти колебания независимые.}
+\end{gather}
+\end{ex}
+\begin{ex}[Вращающаяся чашечка]
+Перейдём в систему координат $x, y$, которая прибита к чашке, и в ней уравнение чашки не изменится, но при этом в подвижной системе координат появятся дополнительные члены, связанные с вращением:
+\begin{gather}
+\vb{v}_{co} = [\vb*{\Omega}, \vb{r}] \Rightarrow\\
+\begin{cases}
+v_x = \dot{x} - \Omega y\\
+v_y = \dot{y} + \Omega x
+\end{cases}
+\Rightarrow L = \frac{m}{2} \left\{(\dot{x} - \Omega y)^2 + (\dot{y} + \Omega x)^2 - \Omega_1^2 x^2 - \Omega_2^2 y^2 \right\},
+\intertext{этот лагранжиан квадратичен по всем координатам и скоростям, и он содержит гироскопически члены (вида произведение координаты на скорость), а мы его перепишем:}
+L = \frac{m}{2} \big\{ \dot{x}^2 + \dot{y}^2 + 2\Omega (x\dot{y} - y\dot{x}) - (\underbrace{\Omega_1^2 - \Omega^2}_{\widetilde{\Omega}_1^2})x^2 - (\underbrace{\Omega_2^2 - \Omega^2}_{\widetilde{\Omega}_2^2})y^2\big\}.\\
+\begin{rcases}
+\dv{t}\pdv{L}{\dot{x}}= m\ddot{x} - m\Omega\dot{y} = \pdv{L}{x} = m\Omega \dot{y} - m\widetilde{\Omega}_1^2 x\\
+\dv{t}\pdv{L}{\dot{y}} = m\ddot{y} + m\Omega\dot{x} = \pdv{L}{y} = - m\Omega \dot{x} - m \widetilde{\Omega}_2^2 y
+\end{rcases}
+\Rightarrow\\
+\begin{cases}
+\ddot{x} - 2\Omega \dot{y} + \widetilde{\Omega}_1^2 x = 0\\
+\ddot{y} + 2\Omega \dot{x} +  \widetilde{\Omega}_2^2 y =0
+\end{cases}\\
+x = C_1 e^{i \Omega t}\\
+y = C_2 e^{i\Omega t}\\
+\begin{cases}
+\left(-\omega^{2}+\widetilde{\Omega}_1^2\right) C_{1}-2 \Omega i \omega C_{2}=0\\
+2 \Omega i \omega  C_{1}+\left(-\omega^{2} + \widetilde{\Omega}_2^2 \right) C_{2}=0, \label{C1_C2_sys}
+\end{cases}
+\intertext{система \eqref{C1_C2_sys} имеет нетривиальное решение, когда определитель матрицы коэффициентов перед искомыми $C_1$ и $C_2$ равен нулю, тогда}
+\boxed{ \left(\omega^{2}-\widetilde{\Omega}_{1}^{2}\right)\left(\omega^{2}-\widetilde{\Omega}_{2}^{2}\right)=4 \Omega^{2} \omega^{2}}.
+\end{gather}
+ Получили биквадратное уравнение относительно нормальных частот $\omega$. Проанализируем случай, когда
+ \[\omega \ll \widetilde{\Omega}_1, \widetilde{\Omega}_2.\]
+\end{ex}
+
+До сих пор у нас был консервативный случай, и обобщённая энергия сохранялась:
+\[H = const \quad H = \sum \frac{1}{2} \left\{m_{iJ} \dot{q}_i \dot{q}_j + k_{ij} q_i q_j\right\}.\]
+\[H/w \quad \dv{H}{t} = 0 \Leftrightarrow P_s(\lambda^2) = 0\; \text{или}\; \lambda\; \text{и}\; -\lambda\; \text{--- корни одновременно.} \]
+
+\subsubsection{Малые колебания в диссипативных системах}
+\paragraph{Диссипативная функция Рэлея.} \index{Диссипативная функция Рэлея}
+Линейное трение в лагранжевых системах обычно вводится следующим образом:
+\[\vb{F}_i = -\sum_j \mu_{ij} \vb{v}_j,\]
+и такие силы можно пересчитать в обобщённые силы, которые войдут в уравнение Лагранжа, с помощью этакого потенциала в пространстве скоростей, с помощью функции Рэлея $R(t, \{\vb{r}_i\}, \{\vb{v}_i\},$ например, такой функции:
+\[\vb{F}_i = -\sum_j \mu_{ij} \vb{v}_j = - \pdv{R}{\vb{r}_i} \quad R = \frac{1}{2} \sum_{i, j} \mu_{ij} \vb{v}_i \vb{v}_j = \frac{1}{2} \gamma_{iJ} \dot{q}_i \dot{q}_j,\]
+и в этом случае
+\[Q_j = \sum_{i=1}^N \vb{F}_i \pdv{\vb{r}_i}{q_j} = - \sum_{i=1}^N \pdv{R}{\vb{v}_i} \pdv{\vb{v}_i}{\dot{q}_j} = - \pdv{R}{\dot{q}_j} = - \sum_{i=1}^n \gamma_{ij} \dot{q}_i,\]
+и отличие от гироскопических сил только в том, что матрица коэффициентов здесь симметричная (по построению):
+\[\gamma_{ij} = \gamma_{ji}.\]
+А уравнение Лагранжа выглядит следующим образом:
+\[\boxed{\frac{d}{d t} \frac{\partial L}{\partial \dot{q}_{j}}-\frac{\partial L}{\partial q_{j}}+\frac{\partial R}{\partial \dot{q}_{j}}=0}.\]
+\[H/w \Rightarrow \sum_{j=1}^{s}\left\{m_{i j} \dot{q}_{j}+\left(G_{i j}+\gamma_{i j}\right) \dot{q}_{j}k_{ij} q_j\right\} = 0, \]
+причём $G_{ij}$ --- антисимметричная часть (порождается функцией Лагранжа), гарантирует,\\ что $P_s (\lambda^2) =0;\; \dv{H}{t} =0;$ $\lambda_{ij}$ --- симметричная часть (порождается функцией Рэлея, и $P_{2s}(\lambda) =0$ --- есть нечётные степени, диссипация, и направления времени не эквиваленты, диссипация работает в обе стороны, система не может двигаться <<по кругу>>, $\dv{H}{t} = \sum Q_j \dot{q}_j = - \sum \pdv{R}{\dot{q}_j} \dot{q}_j = -2R,$ то есть физичесий смысл функции Рэлея в том, что она отвечает мощности потерь на соответствующей силе, которую она определяет, и в этом случае мы будем получать решения, как для осциллятора с трением, в виде
+\begin{gather}
+e^{\lambda t};\; \lambda = \lambda' + i\lambda'' \Rightarrow\\
+e^{\lambda' t} \cos (\lambda'' t + \varphi),
+\end{gather}
+действительная часть корня характеристического уравнения описывает затухание в случае диссипации, а мнимая часть --- действительную часть частоты, свойство одновременной принадлежности к корням $\lambda$ и $\lambda^*$ сохраняется (потому что это свойство действительности коэффициентов), а $\lambda$ и $-\lambda$ --- нет.
