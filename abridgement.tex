@@ -1,6 +1,6 @@
 \documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
-\usepackage[T1, T2A]{fontenc}
+ \usepackage[T1, T2A]{fontenc}
 \usepackage[english,russian]{babel}
 \usepackage{caption}
 \usepackage{indentfirst}
@@ -20,6 +20,8 @@
 \renewcommand{\@biblabel}[1]{#1.} % Заменяем библиографию с квадратных скобок на точку:
 \makeatother
 \makeindex
+
+\usepackage[fleqn,tbtags]{mathtools}
 \renewcommand{\theequation}{\thesection.\arabic{equation}}
     
 \parindent=1.25cm
@@ -74,12 +76,20 @@
 
 \columnseprule = 0.4pt
 
+\mathtoolsset{showonlyrefs=true}
+\mathtoolsset{showmanualtags=true}
+
 \begin{center}
 \Huge{\textbf{Теоретическая механика}}
 \end{center}
 \tableofcontents
 \newpage
 \input{section1.tex}
+\section{Механика Лагранжа}
+\input{bridging}
+\newpage
+\input{oscillation}
+
 \input{abridgement.ind}
-%\bibliography{library.bib}
+\bibliography{library}
 \end{document}
