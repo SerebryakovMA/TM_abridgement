@@ -1,0 +1,491 @@
+\subsection{Вариационная форма механики Лагранжа}
+\subsubsection{Введение в принцип наименьшего действия}
+Раньше, получая уравнения Ньютона, мы исходили из принципа малых шажков. Математически это выражалось тем, что мы рассматривали дифференциальные уравнения Ньютона, и получали решения (уравнения движения как бесконечную сумму бесконечно малых шажков). Введение принципа уравнения Лагранжа и понятия идеальных связей позволили нам исключить из уравнений Ньютона силы реакции связей, которые мы не знаем, и мы получили уравнения Лагранжа второго рода. Это был дифференциальный подход.
+
+Вариационная формулировка подразумевает рассмотрение траекторий как некое целое --- "интегральный подход".
+
+\[L(t, q, \dot{q}, q = (q_1, \dots, q_s), s= 3N-k,\]
+и нет непотенциальных обобщённых сил
+\[Q^{\text{НП}} =0, \]
+то есть наша система полностью описывается уравнением
+\[\left(\frac{d}{d t} \frac{\partial L}{\partial \dot{q}_{j}} - \frac{\partial L}{\partial q_{j}}=0\right).\]
+\begin{dfn}
+$\{q\}$ --- конфигурационное пространство.
+\end{dfn}
+Линия $q(t)$ в конфигурационном пространстве --- то, что мы ищем --- траектория системы, эволюция её состояний во времени. Принцип наименьшего действия позволяет отсортировать настоящие и ненастоящие траектории.  Истинная траектория --- <<прямой путь>>.
+\begin{gather}
+q_1 = q(t_1),\\
+q_2 = q(t_2).
+\end{gather}
+Как отличить истинную траекторию, которая отвечает уравнения Лагранжа, от всех остальных? В фазовом пространстве траектории не пересекаются нигде, кроме особых точек, пересечения (самопересечения) кривых в конфигурационном пространстве ничему не противоречат.
+
+\subsubsection{Вариационный принцип Гамильтона для обобщенно-потенциальных систем}
+Давайте каждой из траекторий по какому-то закону припишем число, а потом скажем, что истинной траектории отвечает конкретное число.
+
+Отображение функций в числа \[q(t) \stackrel{S}{\rightarrow} \mathbb{R}\] называют функционалом.Чтобы не путать с функциями, пишут аргумент в квадратных скобках
+\[S[q(t)] \rightarrow \mathbb{R}.\]
+
+Длина кривой не позволяет выделять истинные траектории. Рассмотрим функционал
+\begin{equation}
+ \boxed{S[q(t)] = \int\limits L(t, q, \dot{q}(t)) \dd{t}}, \label{deystv}
+ \end{equation}
+ этот функционал называют функционалом \index{Функционал действия} действия (иногда просто действием). Конфигурационное пространство является общим для большого семейства систем с разными лагранжианами, но общими обобщёнными координатами.
+ 
+ \begin{pst}
+ Пусть
+ \begin{enumerate}
+ \item $q(t_1) = q_1, q(t_2) = q_2,$
+ \item $\exists M:\; \abs{q_1 - q_2} < M$, 
+ \end{enumerate}
+ тогда $q(t),$ удовлетворяющее уравнению движения, отвечает наименьшему значению функционала действия $S[q(t)] \rightarrow min$ --- аналог того, что первая производная равна нулю, вторая производная знакоопределена. 
+ \end{pst}
+ 
+ \begin{pst}[Вариационный принцип Гамильтона]
+ Пусть $q(t_1) = q_1, q(t_2) = q_2,$ тогда между этими положениями система движется так, что ФЛ принимает стационарные значения $S[q(t)] \rightarrow stat$ --- аналог того, что первая производная равна нулю.
+ \end{pst}
+
+Давайте рассмотрим малое возмущение (бесконечно близкую траекторию с невозмущённым  концами) $q(t) + \delta q(t),$ где $\delta q(t_1) =0,\; \delta q(t_2) = 0,\; \forall \delta q(t)$.
+\begin{gather}
+S[q(t)+\delta q(t)]-S[q(t)] \geqslant 0
+\end{gather}
+Мы не умеем находить экстремумы в пространстве функций, но умеем в пространстве чисел. Предположим, что
+\begin{gather}
+\delta q(t) = \alpha \cdot h(t),\\
+h(t_1) = h(t_2) = 0,
+\end{gather}
+введём понятие 
+\begin{equation}
+S(\alpha) = S[q(t) + \alpha \cdot h(t) ] \geqslant,
+\end{equation}
+последнее неравенство ... то есть переформулировали ПНД в терминах задачи на экстремум в обычных переменных. На физическом уровне строгости напишем необходимое условие существования экстремума в точке $\alpha = 0$
+\begin{gather}
+S(\alpha) \rightarrow \pdv{S}{\alpha} = 0\; |_{\alpha = 0}.
+\end{gather}
+Распишем
+\begin{gather}
+\pdv{\alpha} \int\limits_{t_1}^{t_2} L (t, q + \alpha h, \dot{q} + \alpha \dot{h}) \dd{t} = \int\limits_{t_1}^{t_2} \left\{ \pdv{L}{q} h + \pdv{L}{\dot{q}}\dot{h} \right\}_{|_{\alpha = 0}} \dd{t} = \\
+= \int \limits_{t_1}^{t_2} \left\{ \pdv{L}{q} - \dv{t} \left(\pdv{L}{\dot{q}}\right) \right\} h(t) \dd{t} +  \underbrace{\left. \pdv{L}{\dot{q}}\, h \right| _{t_1}^{t_2}}_{=0} = \\
+=\int\limits_{t_1}^{t_2} \sum_{j=1}^{s}\left\{\frac{\partial L}{\partial q_{j}}-\dv{t} \left(\frac{\partial L}{\partial \dot{q}_j}\right)\right\} h_{j}(t) d t=0 \quad \text{по ПНД для $\forall h_j (t)$.} \Rightarrow\\
+\forall\, j =1,s \quad \boxed{\dv{t} \left(\pdv{L}{\dot{q}_j} \right) - \pdv{L}{q_j}=0},
+\end{gather}
+то есть мы получили, что принцип наименьшего действия гарантирует, что движение по истинным траекториям удовлетворяет уравнению Лагранжа (или, что то же самое, что необходимое условие экстремума --- в точности то же, что уравнение Лагранжа).
+
+Займёмся тем же, что проделали только что, однако не переходя к дифференцированию в числах,
+\begin{equation}
+S[q + \delta q] - S[q] = \int \limits_{t_1}^{t_2} \left\{ L(t, q + \delta q, \dot{q} + \delta \dot{q}) - L(t, q, \delta{q}) \right\} \dd{t},
+\end{equation}
+зафиксируем момент времени и применим разложение в ряд Тейлора, тогда
+\begin{gather}
+S[q + \delta q] - S[q] = \int\limits_{t_1}^{t_2} \left\{\pdv{L}{q} \delta q + \pdv{L}{\dot{q}} \delta \dot{q} + \ldots \right\} \dd{t} =,\\
+\intertext{и проинтегрируем по частям}
+= \int\limits_{t_1}^{t_2} \left\{ \pdv{L}{q} - \dv{t} \pdv{L}{\dot{q}} \right\} \delta q \dd{t} + \ldots .
+\end{gather}
+Написанное нами слагаемое называют \textit{первой вариацией функционала действия,} \index{Вариация} обозначают как $\var{S[q, \delta q]}$.
+
+
+Согласно ВПГ
+\begin{equation}
+\var{S} = 0  \Longleftrightarrow \; \text{ур-ю Лагранжа II рода при фиксированных концах траектории.}
+\end{equation}
+
+
+А ПНД говорит, что
+\begin{equation}
+\text{ур-e Лагранжа II рода} \Longrightarrow \begin{cases}
+\var S = 0,\\
+\var^2{S} \geqslant 0 
+\end{cases}
+\text{при фиксированных концах, близости}\; q_1, q_2.
+\end{equation}
+
+\begin{rmk}[Обобщение на случай систем, не являющихся обобщённо-потенциальными]
+Хотим, чтобы первая вариация приводила к уравнению $\frac{d}{d t} \frac{\partial T}{\partial \dot{q}}-\frac{\partial T}{\partial q}=Q$. Первые два слагаемые получаются из кинетической энергии $T(t, q, \dot{q}),$ второе --- из $\var{S} = \int\limits_{t_1}^{t_2} Q \dd{t},$ при этом \[Q = \sum_{j=1}^s Q_j \delta q_j = \sum_{i=1}^N \vb{F}_i^{(a)} \delta \vb{r}_i = \delta A^{(a)},\] значит,
+\begin{equation}
+S[q(t)] = \int\limits_{t_1}^{t_2} \left(T + A^{(a)}\right) \dd{t}.
+\end{equation}
+
+Частный случай, когда мы имеем дело с обобщённо-потенциальными силами в натуральных системах, в качестве работы активных сил может выступать обобщённый потенциал, то есть
+\[S = \int\limits_{t_1}^{t_2} (T- U) \dd{t}.\] \textit{H/w показать, что, варьируя такой функционал, получим то же, что при варьировании такого функционала с функцией с Лагранжа в качестве аргумента.}
+\end{rmk}
+
+\subsubsection{Вариационный принцип для гармонического осциллятора}
+Почему выбрали именно гармонический осциллятор? Задача на равенство нулю первой производной гораздо проще задачи на определение знака второй производной...
+
+Пусть у нас одномерная система, которая задана лагранжианом
+\[L = \frac{1}{2} (\dot{q}^2 - \omega^2 q.\]
+Для это этой системы мы всё знаем:
+\begin{gather}
+\ddot{q} = -\omega^2 q,\\
+q = a\sin (\omega t + \varphi).
+\end{gather}
+Рассмотрим малое возмущение $q+\delta q,$ посчитаем
+\begin{equation}
+S[q+\delta q] - S[q]. \label{functional_1}
+\end{equation}
+Будем считать $t_1 = 0,$ $t_2 = \tau,$ и если $\tau \neq n T/2,$ то по $q_1$ и $q_2,$ соответствующим заданным моментам времени мы траекторию однозначно определяем, иначе, при времени $\tau = n T/2$ ($T = \frac{2\pi}{\omega}$), называемом \textit{кинетическим фокусом} \index{Кинетический фокус},  получим бесконечно много решений, и все они будут удовлетворять уравнению движения. 
+\begin{dfn}
+Кинетический фокус сопряжённый некой начальной точке --- точка, в которую сходятся  две любые бесконечно близкие (пущенные с разными скоростями) траектории.
+\end{dfn}
+
+\begin{ex}[Кинетический фокус на сфере]
+На глобусе между двумя точками есть наикратчайшее расстояние, но если мы рассмотрим две точки на диаметрально противоположные точки , то таких траекторий с наименьшей длиной будет бесконечно много, и диаметрально противоположная точка будет кинетическим фокусом.
+\end{ex}
+
+Нам надо определить
+\begin{equation}
+\begin{cases}
+\delta q(0) =0\\
+\delta q(\tau) = 0,
+\forall \delta q(t)
+\end{cases}
+\Rightarrow \delta q(t) = \sum_{n=1}^\infty a_n \sin \left(n \frac{\pi}{\tau} t \right), \; \forall a_n \in \mathbb{R}.
+\end{equation}
+Вернёмся к \eqref{functional_1}
+\begin{gather}
+S[q+\delta q] - S[q] = \int\limits_0^\tau \frac{1}{2} \left( (\dot{q} + \delta \dot{q})^2 - \omega^2 (q +\delta q)^2  - \dot{q}^2 + \omega^2 q\right) \dd{t} =\\
+=\int\limits_0^\tau \frac{1}{2} \left\lbrace \underbrace{2\dot{q} \delta \dot{q} - 2\omega^2 q \delta q}_{\dot{q}\delta \dot{q} + \ddot{q} \delta q = \dv{t}(\dot{q} \delta q)} + \delta \dot{q}^2 - \omega^2 \delta q^2 \right\rbrace \dd{t} =\\
+= \int\limits_0^\tau \frac{1}{2} \sum_{n=1}^\infty a_n^2  \left\lbrace (n \frac{\pi}{\tau})^2 \cos^2 (n \frac{\pi}{\tau} t) - \omega^2 \sin^2 (\frac{n \pi}{\tau} t) \right\rbrace \dd{t} =\\
+= \frac{\pi}{4} \sum_{n=1}^\infty a_n^2 (n^2 \Omega^2 - \omega^2), 
+ \end{gather}
+ и вся эта штука отвечает минимуму, если $\Omega > \omega,$ что равносильно тому, что $\tau < T/2.$ То есть, если траектория не содержит кинетического фокуса, то реализуется принцип наименьшего действия\footnote{Подробнее, но без доказательств, см. \cite{Atherman}, \S 5, Гл. 7.}.
+
+Повторим общее утверждение. Если на действительной траектории не лежит кинетический фокус исходной точки, то функционал действия отвечает наибольшему (или наименьшему\footnote{Зависит от того, какой знак мы поставили перед лагранжианом.}) значению.
+
+Если мы рассматриваем траекторию с кинетическим фокусом, то её можно разбить на кусочки без кинетических фокусов, и на каждом куске будет реализован минимум.
+
+Если проводить вариацию только по траекториям, проходящим через кинетический фокус, то будет принцип наименьшего действия.
+
+\subsubsection{Следствия вариационного принципа}
+Чем же так хорош вариационный принцип?
+У вариационного принципа есть два аспекта, которые сделали его в некоторой мере центральным для современной теоретической физики.
+
+Сформулировав вариационный принцип, мы сумели абстрагироваться от системы координат --- технической вспомогательной конструкции, которая нужна уже при решении уравнений движения. Неизменность уравнений Лагранжа при изменении координат --- следствие вариационного принципа.
+
+\begin{enumerate}
+\item Пусть у нас есть $L(t, q, \dot{q})$, рассмотрим $L' = L + \dv \Phi (t, q)$. $L$ порождает функционал действия
+\[S[q] = \int_{t_1}^{t_2} L \dd{t} \rightarrow \var{S [q, \delta q]} = 0 \Leftrightarrow \text{ур. Лагранжа на $q(t).$}\]
+А теперь для $L'$
+\[S'[q] = \int_{t_1}^{t_2} L' \dd{t} = S[q] + \left. \Phi (t, q) \right|_{t_1}^{t_2} \rightarrow \var{S'} = \var{S},\]
+поскольку последняя подстановка не даёт вклада в вариацию, и вариации зануляются на одних и тех же значения $q$ и $t$.
+
+\item Рассмотрим преобразование координат в уравнении Лагранжа.
+\begin{gather}
+L(t, q, \dot{q}) \rightarrow\\
+\dv{t} \frac{\partial L}{\partial \dot{q}}-\frac{\partial L}{\partial q}=0 \stackrel{q^* = \varphi(t, q)}{\longrightarrow} \text{как будет выглядеть уравнение $q^* (t)$?}\\
+\left(\dv{\tilde{\varphi}}{t} = \pdv{\tilde{\varphi}}{t} + \pdv{\tilde{\varphi}}{q^*}\dot{q}^*, \quad q = \tilde{\varphi}(t, q^*) \right)\\
+S[q] = \int_{t_1}^{t_2} L \dd{t} \equiv \int_{t_1}^{t_2} \underbrace{L \left(t, \tilde{\varphi}(t, q^*), \dv{\tilde{\varphi}}{t}\right)}_{L^* (t, q^*, \dot{q}^*)} \dd{t} = S^* [q^* (t)]\\
+\delta S[q] = \delta S^* [q^*] =0
+\end{gather}
+\begin{rmk}
+Если система была натуральной $L = L_0 + L_1 + L_2,$ то она останется натуральной при замене координат.
+\end{rmk}
+
+\item Замена координат и времени. Была Лагранжева задача
+\begin{equation}
+L(t, q, \dot{q}) \rightarrow \text{ур. Лагранжа} \rightarrow \begin{cases}
+q^* = \varphi(t, q)\\
+t^* = \psi(t, q)
+\end{cases}
+\rightarrow \text{? ур-я $q^*(t^*)$}
+\end{equation}
+\begin{equation}
+\begin{cases}
+q=\tilde{\varphi}\left(t^{*}, q^{*}\right)\\
+t = \widetilde{\psi}(t^*, q^*)
+\end{cases}
+\end{equation}
+
+\begin{equation}
+S[q(t)] = \int_{t_1}^{t_2} L(t, q, \dot{q}) \dd{t} = \int_{t_1^*}^{t_2^*} \underbrace{L\left(\widetilde{\psi}, \tilde{\varphi}, \dv{\tilde{\varphi}}{\widetilde{\psi}}\right) \dv{\widetilde{\psi}}{t^*}}_{L^* \left(t^*, q^*, \dv{q^*}{t^*}\right)} \dd{t^*} = S^* [q^*(t^*)],
+\end{equation}
+но этот функционал тождественно связан с исходным, поэтому
+\[\var{S} \equiv \var{S^*},\]
+следовательно, $L^{*}$ порождает уравнения Лагранжа, которые в точности равны исходным, в которых произведена замена <<$*$>>.
+\begin{equation}
+\begin{rcases}
+\dd{q}=\pdv{\tilde{\varphi}}{t^*} \dd{t^{*}}+\pdv{\tilde{\varphi}}{q^*}  \dd{q^{*}}\\
+\dd{t} = \pdv{\widetilde{\psi}}{t^*} \dd{t^*} + \pdv{\widetilde{\psi}}{q^*}  \dd{q^{*}}
+\end{rcases}
+\Rightarrow
+L^{*} = L \left( \widetilde{\psi}, \tilde{\varphi}, \frac{\pdv{\tilde{\varphi}}{t^*} +\pdv{\tilde{\varphi}}{q^*} \dv{q^*}{t^*}}{\pdv{\widetilde{\psi}}{t^*} + \pdv{\widetilde{\psi}}{q^*} \dv{q^*}{t^*}}\right) \cdot \Bigg(\underbrace{\pdv{\widetilde{\psi}}{t^*} + \pdv{\widetilde{\psi}}{q^*} \dv{q^*}{t^*}}_{\dv{t}{t^*}} \Bigg) \label{monster}
+\end{equation}
+\begin{rmk}
+Система не остаётся натуральной!
+\end{rmk}
+\end{enumerate}
+
+\begin{ex}
+\begin{multicols}{2}
+Натуральная система (Ньютоновская механика).
+\[\vb{p}= m \vb{v} = \pdv{L}{\vb{v}} \Rightarrow L = \frac{mv^2}{2}.\]
+\begin{equation}
+\begin{rcases}
+H = \vb{p} \cdot \vb{v} -L = L\\
+H = T 
+\end{rcases}
+\Rightarrow L = T\; (\text{натуральность})
+\end{equation}
+
+Не натуральная система (релятивистская механика). $H/w$
+\begin{gather}
+\vb{p} = \frac{m\vb{v}}{\sqrt{1- v^2/c^2}} = \pdv{L}{\vb{v}} \Rightarrow L = - mc^2 \sqrt{1 - v^2/c^2}\\
+H = \vb{p} \cdot \vb{v} - L = \frac{mv^2 + mc^2}{\sqrt{\ldots}} = \frac{mc^2}{\sqrt{1 - v^2/c^2}}\\
+H = T \Rightarrow L \neq T\; (\text{ненатур.})
+\end{gather}
+\end{multicols}
+\end{ex}
+
+\subsubsection{Вариационный принцип и законы сохранения (теорема Нётер)} \index{Теорема! Нётер}
+Связь уравнений, которые следуют из вариационного принципа, с законами сохранения --- вторая глобальная фишка, делающая ВП центральным в современной теоретической физике, первая --- уравнения, следующие из ВП ковариантны, то есть не зависят от ввода системы координат. 
+
+Существует неразрывная связь симметрий в системе и уравнений движения. Теорема Нётер позволяет связать симметрии и следующие их них интегралы движения способом, не зависящим от способа ввода координат.
+
+\begin{thm}[Теорема Нётер]
+Каждому преобразованию координат и времени, оставляющему функционал действия инвариантным, отвечает первый интеграл уравнения движения.
+
+Математически, если дано преобразование координат и времени
+\begin{gather}
+q^* = \varphi(t, q, \alpha)\\
+t^* = \psi (t, q, \alpha),
+\end{gather}
+которое удовлетворяет следующим трём пунктам  условий,
+\begin{enumerate}
+\item $q = q^*,$ $t = t^*$ при $\alpha = 0.$
+
+\item При $\abs{\alpha} < \varepsilon$ существуют обратные преобразования $\tilde{\varphi}(t^*, q^*, \alpha) = q,$ $\widetilde{\psi}(t^*, q^*, \alpha) = t.$
+
+\item  (Симметрии.) $\Phi$-инвариантность\footnote{Используемая дальше функция $L^*$ определяется уравнением \eqref{monster}.} $L^* \left(t^*, q^*, \dv{q^*}{t^*}\right) = L \left(t^*, q^*, \dv{q^*}{t^*}\right) + \dv{t^*} \Phi(t^*, q^*, \alpha)$. \footnote{Эквивалентное утверждение для действия $S[q] = S^*[q^*] = S[q^*] + \left.\Phi \right|_{t_1^*}^{t_2^*}$.}
+\end{enumerate}
+
+то на решениях системы существует первый интеграл уравнения Лагранжа
+\[I(t, q, \dot{q}) \left\{ \sum_{j=1}^s \pdv{L}{\dot{q}_j} \pdv{\varphi_j}{\alpha} - H \pdv{\psi}{\alpha} + \pdv{\Phi}{\alpha} \right\}_{\alpha = 0} = const.\]
+\end{thm}
+
+\begin{ex}[Преобразование сдвига]
+\begin{equation}
+x^* = x + \alpha, \Phi = 0 \Rightarrow I = \pdv{L}{\dot{x}} \left(\pdv{X^*}{x}\right)_{\alpha = 0} = p_x.
+\end{equation}
+\end{ex}
+\begin{ex}[Поворот]
+\begin{equation}
+\begin{cases}
+x^* = x \cos \alpha + y \sin \alpha\\
+y^* = -x\sin \alpha + y \cos \alpha,
+\end{cases}
+\Phi = 0 \Rightarrow I = p_x \pdv{x^*}{\alpha} + p_y \pdv{y^*}{\alpha} = yp_x - xp_y = M_z
+\end{equation}
+\end{ex}
+\begin{ex}[Винтовая симметрия]
+К повороту из предыдущего примера добавим сдвиг $z^* = z + \frac{h}{2\pi} \alpha$, тогда
+$I = M_z + p_z \frac{h}{2\pi}.$
+\end{ex}
+\begin{ex}
+\[t^* = t + \alpha \Rightarrow I = -H.\]
+\end{ex}
+\begin{ex}[Преобразования Галилея]
+\begin{equation}
+\begin{cases}
+x^* = x - \alpha t \quad(\alpha = u)\\
+t^* = t
+\end{cases}
+\Rightarrow \pdv{x^*}{\alpha} = -t,
+\end{equation}
+при этом 
+\begin{gather}
+L = \frac{m}{2} \dot{x}^2,\; \dot{x} = \dot{x}^* + \alpha,\\
+L^* = L(\dot{x}^* + \alpha) = \underbrace{\frac{m}{2} \dot{x}^*}_{L^*(\dot{x}^*)} + \underbrace{m \alpha \dot{x}^* + \frac{m}{2} \alpha^2}_{\dv{t}\left(\alpha mx^* + \frac{m\alpha^2}{2}t\right)} \Rightarrow\\
+\Rightarrow I = p_x (-t) + mx = const\; (= 0),\\
+p_x = m \frac{x}{t}.
+\end{gather}
+
+\end{ex}
+
+
+
+\begin{proof}[Доказательство теоремы Нётер]
+Попробуем свойства $\Phi$-инвариантности записать в пределе $\alpha \to 0$. Разложим в ряды преобразования координат  и времени
+\begin{align}
+q^* &= \varphi(t, q, \alpha) = q + \alpha \cdot Q + \ldots & Q_j &= \left. \pdv{\varphi_j}{\alpha} \right|_{\alpha = 0}\\
+t^* &= \psi (t, q, \alpha) =  t + \alpha \cdot T + \ldots & T &= \left. \pdv{\psi}{\alpha} \right|_{\alpha = 0}.
+\end{align}
+Заметим, что 
+\begin{equation}
+\dv{q^*}{t^*} = \frac{\dot{q} + \alpha \dot{Q} + \ldots}{1 + \alpha \dot{T} + \ldots} = \dot{q} + \alpha (\dot{Q} - \dot{q} \dot{T}) + \ldots.
+\end{equation}
+По формуле \eqref{monster} получим выражение для $L^*$
+\begin{gather}
+L^* = L\left(t^* - \alpha T, q^* - \alpha Q, \dv{q^*}{t^*} - \alpha(\dot{Q} - \dot{q} \dot{T}) \right) \cdot \left(1 - \alpha \dot{T} \right) =\\
+= L(t^*, q^*, \dv{q^*}{t^*}) - \alpha \bigg\{ \underbrace{\pdv{L}{t}}_{= - \dot{H} T} T + \underbrace{\pdv{L}{q} Q}_{\dot{p} Q} + \pdv{L}{\dot{q}} \left(\dot{Q} - \dot{q} \dot{T}\right) + L\dot{T}  \bigg\} =\\
+= L(*)  - \alpha \left\{-\dv{t} (HT) + \dv{t}(pQ)\right\} + \ldots, \label{pre_phi_inv}
+\end{gather}
+так как $\pdv{L}{\dot{q}} \dot{Q} = p \dot{Q},$ а $-\pdv{L}{\dot{q}} \dot{q} \dot{T} + L\dot{T} = \dot{T} (L - \dot{q} p) = - H\dot{T}$. А дальше воспользуемся $\Phi$-инвариантностью, и перепишем полученное для $L^*$ выражение \eqref{pre_phi_inv}
+\begin{equation}
+ L^* = L(*) + \underbrace{\dv{t^*} \Phi(t^*, q^*, \alpha)}_{\dv{t}\left(\alpha \left. \pdv{\Phi}{\alpha}\right|_{\alpha = 0} + \ldots\right)}.
+ \end{equation} 
+ Приравняем одинаковые порядки, тогда
+ \begin{equation}
+ \dv{t} \left\{ pQ - HT + \left. \pdv{\Phi}{\alpha} \right|_{\alpha = 0} \right\} = 0,
+ \end{equation}
+а дифференцируемое выражение в точности и есть сохраняющийся интеграл движения.
+\end{proof}
+
+\subsubsection{Как вариационная формулировка работает в приближенных к реальным условиях?}
+\[L(t, q, \dot{q}) \Rightarrow S[q(t)] = \int_{t_1}^{t_2} L \left(t, q(t), \dot{q}(t)\right) \dd{t}\]
+\begin{gather}
+\text{ур. Лагранжа}\; \Leftrightarrow \begin{cases}
+\var{S} = 0\\
+\var{q(t_1)} = \var{q(t_2)} = 0
+\end{cases}
+\text{(ВПГ)}\quad
+\oplus \quad
+\begin{cases}
+q_1, q_2\; \text{близки так, что нет кин. фокусов,}\\
+\text{сопряжённых с началом (концом) траектории}\\
+S \to min\; (max)
+\end{cases}
+\end{gather}
+
+Что мы выигрываем, зная, что уравнения Лагранжа следуют из решения вариационной экстремальной задачи?
+\begin{enumerate}
+\item Ковариантность относительно замены координат.
+\item Теорема Нётер. 
+\begin{gather}
+\begin{cases}
+q^* = q + \alpha \cdot Q(t, q) + O(\alpha^2)\\
+t^* = t + \alpha \cdot T(t, q) + O(\alpha^2)
+\end{cases}
++ \text{$\Phi$-инфариантность}\; L^{*} = L \left(t^*, q^*, \dv{q^*}{t^*}\right) + \dv{t^*} \Phi (t^*, q^*, \alpha),\\
+\left(t\; \text{и}\;q\; \text{не равны нулю одновременно,}\;\Phi = \Phi_0 + \alpha \cdot \Xi + O(\alpha^2)\right),
+\end{gather}
+тогда существует интеграл движения
+\begin{gather}
+\pdv{L}{\dot{q}}Q + H \cdot T + \Xi = const\; \text{на реш. ур. Лагранжа.}
+\end{gather}
+\begin{rmk}
+\begin{gather}\begin{cases}
+q^* = \varphi(q, t)\\
+t^* = \psi(q, t)\\
+\ldots
+\end{cases} \Rightarrow
+\begin{cases}
+Q = \left. \pdv{\varphi}{\alpha} \right|_{\alpha= 0},\\
+T = \left. \pdv{\psi}{\alpha} \right|_{\alpha = 0},\\
+\Xi = \left. \pdv{\Phi}{\alpha} \right|_{\alpha= 0}
+\end{cases}
+\end{gather}
+\end{rmk}
+\end{enumerate}
+
+\subsubsection{Лагранжиан свободной материальной точки.}\index{Лагранжиан! свободной материальной точки}
+\paragraph{В Ньютоновской механике}\! из дифференциального подхода для свободной материальной точки мы знаем
+\begin{equation}
+L = \frac{mv^2}{2},
+\end{equation}
+но можно стартовать с вариационного принципа, и последний не утверждает, что $L = T -U,$ стартуем с того, что система описывается $L(t, q, \dot{q}),$ выведем механику сил.
+Воспользуемся теми же принципами, что и для Ньютоновской механики.
+\begin{enumerate}
+\item Пространство однородно и изотропно. Время однородно. $\Rightarrow L (\not{t}, \not{\vb{r}}, \vb{v}) = L(v^2).$
+Зная, что у нас $L(v^2),$ можем доказать первый закон Ньютона:
+\begin{gather}
+\vb{p} = \pdv{L}{\vb{v}} = \pdv{L}{v^2} \pdv{v^2}{\vb{v}} = \pdv{L}{v^2} \cdot 2\vb{v} = const\; (\text{$\vb{r}$  --- цикл.}) \Rightarrow v =const, \vb{v} = const\\
+H = \vb{p}\cdot \vb{v} - L = 2v^2 \pdv{L(v^2)}{v^2} - L = const\; (\text{$t$  --- цикл.}),
+\end{gather}
+двумя способами получили :)
+\item Чтобы воспользоваться теоремой Нётер, надо придумать какое-то преобразование, оставляющее уравнение движения инвариантным, вспомним про преобразование Галилея, которое тоже как бы свойство пространства-времени, делающее эквивалентными все инерциальные системы отсчёта в Ньютоновской механике. 
+\begin{gather}
+\begin{cases}
+t^* = t\\
+r^* = \vb{r} - \vb{u} \cdot t;\; \vb{u} = \alpha \cdot \vb{n}_{const}
+\end{cases}
+\stackrel{Th.\, Noether}{\longrightarrow} 
+\begin{cases}
+T = 0\\
+Q = - \vb{n}\cdot t
+\end{cases} \Rightarrow
+\boxed{-\pdv{L}{v^2} 2(\vb{n} \cdot \vb{v})t = F (t, \vb{r})}\dv{t} \rightarrow\\
+\pdv{L}{v^2} \cdot 2(\vb{n} \cdot \vb{v}) = \pdv{F(t, \vb{r})}{t} + \pdv{F(t, \vb{r})}{\vb{r}}\vb{v},\\
+\intertext{но левая часть полученного равенства не зависит от времени и координат, поэтому правая тоже от них не зависит, значит,}
+\pdv{L}{v^2} \cdot 2(\vb{n} \cdot \vb{v}) = \pdv{F(t, \vb{r})}{t} + \pdv{F(t, \vb{r})}{\vb{r}}\vb{v} = a + (\vb{b}, \vb{n}) \stackrel{\vb{b} =\vb{n}\cdot m}{=} m (\vb{n}, \vb{v})\\
+\left(H/w\quad (\vb{n}, \vb{v}) = a + (\vb{b}, \vb{v}) \Rightarrow a =0, \vb{b} = \vb{n} \right)
+\end{gather}
+и мы, хитро подобрав константы, получили то, что нам надо в ответе:
+\[\pdv{L}{v^2} = \frac{m}{2} \Rightarrow L = \frac{mv^2}{2} + const.\]
+Ландау и Лифшиц дальше для несвободной материальной точки постулируют силы, то есть к лагранжиану свободной материальной точки аддитивно добавляют взаимодействие с внешними полями
+\[L = \frac{mv^2}{2} - U(t, \vb{r}, \vb{v}) \ldots,\]
+возможность так делать постулируется.
+\end{enumerate}
+
+\paragraph{В СТО}\! то же, что в предыдущем пункте, но с преобразованиями Лоренца
+\begin{equation}
+\begin{cases}
+\vb{r}^* = \frac{\vb{r}-\vb{u} t}{\sqrt{1-u^{2} / c^{2}}}\\
+t^* = \frac{t-(\vb{u}, \vb{r}) / c^{2}}{\sqrt{1-u^{2} / c^2}}.
+\end{cases}
+\stackrel{\vb{u} = \alpha \cdot \vb{n}}{\Longrightarrow}
+\boxed{
+\begin{cases}
+\vb{r}^* = \vb{r} - \alpha \vb{n} \cdot t + \ldots\\
+t^* = t - \alpha (\vb{n}, \vb{r})/c^2 + \ldots
+\end{cases}}.
+\end{equation}
+По-прежнему время и пространство однородны, пространство изотропно. Значит, как и раньше,
+\[\vb{p} = 2\vb{v} \pdv{L}{t^2}; H = 2v^2 \pdv{L}{v^2} - L \Rightarrow \vb{p} = const, \vb{v} = const, v = const.\]
+Чтобы узнать форму $L(v^2)$, воспользуемся теоремой Нётер
+\begin{gather}
+\vb{p} Q - H \cdot T = - F(t, \vb{r})\\
+-2(\vb{n}, \vb{v}) \pdv{L}{v^2} \cdot t + \left(2v^2 \pdv{L}{v^2} - L\right) \frac{(\vb{n}, \vb{r})}{c^2} =  F(t, \vb{r})\; \left| \dv{t} \right.\\ 
+(\vb{n}, \vb{v}) \left\{ \left(2v^2 \pdv{L}{v^2} - L\right)\frac{1}{c^2} - 2\pdv{L}{v^2}\right\} = \underbrace{\pdv{F}{t}}_{=0} + \underbrace{\pdv{F}{\vb{r}}\vb{v}}_{\parallel \vb{n}} = (\vb{n}, \vb{v}) \cdot \underbrace{\frac{L_0}{c^2}}_{const}\\
+-\pdv{L}{v^2}\left(1-\frac{v^{2}}{c^{2}}\right)=\frac{1}{2 c^{2}}\left(L-L_{0}\right)
+\end{gather}
+\begin{gather}
+\pdv{\ln (L-L_0)}{v^2} = \hlf \frac{1}{v^2 - c^2} = \hlf \pdv{v^2} \ln \abs{v^2 - c^2}\\
+L = L_0 + A \sqrt{c^2 - v^2} \to \frac{mv^2}{2}\; \text{при $v \to 0$}\; \stackrel{cA= - mc^2}{\Rightarrow} \boxed{L = - mc^2 \sqrt{1 - v^2 / c^2} + mc^2} \Rightarrow\\
+H = \frac{mc^2}{\sqrt{1- v^2/c^2}} \neq L,
+\end{gather}
+то есть $L \neq T,$ система ненатуральная; $\vb{p} = \frac{m\vb{v}}{\sqrt{1- v^2/c^2}}.$
+
+\subsection{Электромеханические аналогии}
+\textbf{(Смешанные электромеханические системы в механике Лагранжа)}
+\begin{ex}
+\begin{equation}
+U = \mathcal{E},\; U = \frac{q}{C},\; \mathcal{E} = -L\dot{I} = - L \ddot{q} \Rightarrow
+\end{equation}
+\begin{gather}
+L \ddot{I} + \frac{1}{C} q = 0\; \text{ --- гармонический осциллятор с $\omega^2 = \frac{1}{LC},$}\\
+L \ddot{I} + \frac{1}{C} I = 0\; \left| \cdot CL \right. \Longrightarrow CL^2 \ddot{I} + L I = 0.
+\end{gather}
+Будем рассматривать заряд на обкладках в качестве обобщённой координаты, тогда, рассматривая индуктивность в роли массы, запишем функцию Лагранжа
+\begin{equation}
+\mathcal{L} = \hlf L\dot{q}^2 - \frac{1}{2C} q^2 = T -U: 
+\begin{cases}
+T = \hlf LI^2\; \text{--- энергия магнитного поля в катушке,}\\
+U = \frac{1}{2C} q^2\; \text{--- энергия энергия электрического поля в конденсаторе.}
+\end{cases}
+\end{equation}
+Точно так же в качестве обобщённой координаты можно рассматривать ток (тогда роль массы играет выражение $CL^2$):
+\begin{equation}
+\mathcal{L} = \hlf CL^2 \dot{I}^2 - \hlf LI^2 = T - U,
+\begin{cases}
+T = \hlf CU^2,\\
+U = \frac{1}{2} LI^2,
+\end{cases}
+\end{equation}
+и, когда контур замкнутый, разницы никакой нет. Разница возникает, если контур разомкнуть. $H/w$
+\end{ex}
+
+\begin{ex}
+\begin{gather}
+\mathcal{L}_{\text{мех}} = \frac{m \dot{x}^{2}}{2}-\frac{k x^{2}}{2}-\operatorname{mg} x\\
+\mathcal{L}_{\text{эл}} = \frac{1}{2} L(x) \dot{q}^{2}-\frac{1}{2 C(x)} q^{2},\\
+\left(C(x) = \frac{S_C}{4\pi x}, L(x)  = 4\pi \frac{N^2 S_L}{L-x} \right)\\
+\mathcal{L} = \mathcal{L}_{\text{мех}} + \mathcal{L}_{\text{эл}}
+\end{gather}
+Получим уравнения Лагранжа.
+\begin{equation}
+\dv{t} \pdv{\mathcal{L}}{\dot{x}} = m\ddot{x} = \pdv{\mathcal{L}}{x} = - kx -mg + \frac{1}{2}\pdv{L}{x} \cdot \dot{q}^2 - {\frac{q^2}{2} \pdv{x} \frac{1}{C}}\footnote{$-\frac{q^2}{2} \frac{4\pi}{S_C} = -2\pi \sigma q = Eq$ --- в точности электрическая сила взаимодействия двух пластин конденсатора. Можно показать, что в точности совпадает с силой сопротивления сжатию соленоида предыдущий член, да и все слагаемые могут быть получены из первых принципов.}
+\end{equation}
+\end{ex}
+У нас теперь две степени свободы. Найти $q$  и $\dot{q}$ можно из второго уравнения движения:
+\begin{equation}
+\dv{t} \pdv{\mathcal{L}}{\dot{q}} = \dv{t} (L(x) \dot{q}) = L \ddot{q} + \pdv{L}{x} \dot{x} \dot{q} = \pdv{\mathcal{L}}{q} = \frac{q}{C}.
+\end{equation}

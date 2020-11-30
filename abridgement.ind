@@ -1,39 +1,46 @@
 \begin{theindex}
 
+  \item Вариация, \hyperpage{23}
+  \item Ветка однозначности, \hyperpage{31}
   \item Вириал
-    \subitem  Клаузиуса, \hyperpage{11}
+    \subitem  Клаузиуса, \hyperpage{10}
   \item Диссипативная функция Рэлея, 
-		\hyperpage{22}
+		\hyperpage{20}
   \item Задача Кэлли, \hyperpage{2}
   \item Закон сохранения
-    \subitem  импульса, \hyperpage{6}
-    \subitem  момента импульса, \hyperpage{6}
+    \subitem  импульса, \hyperpage{5}
+    \subitem  момента импульса, \hyperpage{5}
     \subitem  энергии
       \subsubitem  для одной материальной точки, 
-		\hyperpage{6}
+		\hyperpage{5}
       \subsubitem  для системы материальных точек, 
-		\hyperpage{7}
+		\hyperpage{6}
   \item Законы Ньютона
     \subitem  второй, \hyperpage{4}
-    \subitem  первый, \hyperpage{4}
+    \subitem  первый, \hyperpage{3}
     \subitem  третий, \hyperpage{4}
-  \item Интеграл движения, \hyperpage{9}
+  \item Интеграл движения, \hyperpage{8}
+  \item Кинетический фокус, \hyperpage{23}
   \item Координаты
     \subitem  криволинейные, \hyperpage{3}
     \subitem  цилиндрические, \hyperpage{3}
+  \item Лагранжиан
+    \subitem  свободной материальной точки, 
+		\hyperpage{27}
   \item Момент
     \subitem  импульса, \hyperpage{4}
     \subitem  силы, \hyperpage{4}
-  \item Преобразование Галилея, \hyperpage{4}
-  \item Связи, \hyperpage{15}
+  \item Преобразование Галилея, \hyperpage{3}
+  \item Связи, \hyperpage{13}
   \item Сила
-    \subitem  гироскопическая, \hyperpage{7}
-    \subitem  диссипативная, \hyperpage{7}
-    \subitem  потенциальная, \hyperpage{6}
+    \subitem  гироскопическая, \hyperpage{6}
+    \subitem  диссипативная, \hyperpage{6}
+    \subitem  потенциальная, \hyperpage{5}
   \item Теорема
-    \subitem  Нётер, \hyperpage{9}
-    \subitem  о вириале, \hyperpage{9}
+    \subitem  Нётер, \hyperpage{8}, \hyperpage{25}
+    \subitem  о вириале, \hyperpage{8}
   \item Ускорение, \hyperpage{3}
-  \item Центр масс, \hyperpage{5}
+  \item Функционал действия, \hyperpage{21}
+  \item Центр масс, \hyperpage{4}
 
 \end{theindex}
