@@ -1,0 +1,215 @@
+\subsection{Интегрирование уравнения движения систем с одной степенью свободы}
+Мы будем интересоваться решением ДУ вида $\ddot{x} = F(t, x, \dot{x}).$\footnote{$x= 1;\; \dim x =1, s =1$}
+\subsubsection{Классификация состояний равновесия автономной системы на плоскости}
+\begin{equation}
+\ddot{x} = F(x, \dot{x}) \Rightarrow \begin{cases}
+\dot{x} = f(x, y)\\
+\dot{y} = g(x, y)
+\end{cases}
+\end{equation}
+Состояние равновесия
+\begin{equation}
+\begin{cases}
+\dot{x} = 0\\
+\dot{y} = 0
+\end{cases}
+\Leftrightarrow
+\begin{cases}
+f(x_0, y_0) =0\\
+g(x_0, y_0) = 0.
+\end{cases}
+\end{equation}
+Рассматриваемое малое возмущение
+\begin{equation}
+\begin{cases}
+x = x_ 0 + \xi\\
+y = y_0 + \eta 
+\end{cases}
+\Rightarrow
+\begin{cases}
+\dot{xi} = \alpha \xi + \beta \eta\\
+\dot{\eta} = \gamma \xi + \delta \eta,
+\end{cases}
+\alpha = \left. \pdv{f}{x} \right|_{x_0, y_0}, \beta = \left. \pdv{f}{y} \right|_{x_0, y_0}, \ldots, \delta = \left. \pdv{g}{y} \right|_{x_0, y_0}.\footnote{Рассматриваем линейное состояние равновесия.}
+\end{equation}
+Будем искать решение в виде 
+\begin{gather}
+\begin{pmatrix}
+\xi\\
+\eta
+\end{pmatrix} = 
+\begin{pmatrix}
+a\\
+b
+\end{pmatrix}
+e^{\lambda t} \Rightarrow \begin{cases}
+\lambda a = \alpha a + \beta\\
+\lambda b = \gamma a + \delta b
+\end{cases} \Rightarrow 
+\det \begin{pmatrix}
+\alpha - \gamma & \beta\\
+\gamma & \delta - \lambda
+\end{pmatrix}
+= 0 \Leftrightarrow\\
+\Leftrightarrow (\lambda - \alpha)(\lambda - \delta) = \gamma \beta,\\
+\lambda_{1,2} = \frac{\alpha + \beta}{2} \pm \sqrt{\left(\frac{\alpha - \delta}{2}\right)^2 - \gamma \beta}.
+\end{gather}
+\begin{enumerate}
+\item $\lambda = \pm i \omega$ --- состояние равновесия типа центр, устойчивое, не асимптотически устойчивое. Фазовые кривые --- эллипсы.
+\item $\lambda p \pm i \omega$ --- состояние равновесия типа фокус, может быть в зависимости от знака $p$ как устойчивым, так и неустойчивым\footnote{Устойчиво при $p < 0$.}, устойчивое равновесие асимптотически устойчиво. Фазовые кривые <<сжимаются>> или <<раскручиваются>>.
+\item $\lambda \in \mathbb{R}, \lambda_1 \cdot \lambda_2 > 0$ ---состояние равновесия типа узел --- равновесие типа фокус при очень сильном трении. Асимптотически устойчиво либо неустойчиво.
+\item $\lambda \in \mathbb{R}, \lambda_1 \cdot \lambda_2 < 0$ --- состояние равновесия типа седло, неустойчиво.
+\end{enumerate}
+$H/w$ Как найти направления асимптот?
+
+\begin{ex}
+\begin{gather}
+\ddot{x} = f(x, v), v =0, m = 1 \\
+\begin{cases}
+\dot{x} = v\\
+\dot{v} = f_0(x) - \mu \cdot v = - \pdv{U(x)}{x} - \mu \cdot x
+\end{cases}\\
+\pdv{U(x_0)}{x} = 0; \pdv[2]{U(x_0)}{x} = U'' \neq 0; \begin{cases}
+x = x_0 + \xi\\
+v = \eta
+\end{cases}
+\Rightarrow\\
+\begin{cases}
+\dot{\xi} = v\\
+\dot{v} = -U'' \cdot \xi - \mu \cdot v
+\end{cases} \Rightarrow 
+\det \begin{pmatrix}
+-\lambda & 1\\
+-U'' & -\lambda - \mu
+\end{pmatrix} = 0 \Rightarrow \boxed{\lambda^2 + \mu \lambda + U'' = 0} \Rightarrow \\
+\lambda_{1, 2} = - \frac{\mu}{2} \pm \sqrt{\frac{\mu^2}{4} - U''}
+\end{gather}
+Чередуются состояние равновесия типа седло, узел и фокус, центры превращаются в диссипативные состояния равновесия, фокусы отвечают случаям малого трения, при её увеличении превращаются в узлы.
+\end{ex}
+
+\subsubsection{Интегрирование уравнения движения консервативных одномерных систем}
+Будем рассматривать лагранжеву задачу, в которой существует интеграл энергии.
+\[L(x, \dot{x})\; \text{--- уравнения Лагранжа решаются в квадратурах.}\]
+\begin{equation}
+\pdv{L}{t} = 0 \Rightarrow H(x, \dot{x}) = const\; \text{на решениях}.
+\end{equation}
+Фазовый портрет --- линии уровня $H(x, \dot{x})$.\index{Фазовый портрет}
+\begin{gather}
+H(x, \dot{x}) = E = const \Rightarrow \dot{x} = V(x, E)\\
+\dv{x}{t} = V(x, E) \Rightarrow \dd{t} = \frac{\dd{x}}{V(x, E)} \Rightarrow \boxed{t= \int^x \frac{\dd{x}}{V(x, E)}},
+\end{gather}
+аддитивная константа в нижнем пределе интегрирования отвечает заданному $E$, его линии уровня, и такие точки надо различать, поэтому на самом деле везде в решении вместо $V(x, E)$ должно быть $V_i (x, E),$ где $i$ определяет \textit{ветку однозначности}.\index{Ветка однозначности}
+
+\begin{dfn}
+$x$ --- ограниченная область --- движение финитное; $x$ --- неограниченная область --- движение инфинитное.
+\end{dfn}
+\begin{pst}
+Всякое финитное движение в одномерной консервативной системе обязательно является периодическим. 
+\end{pst}
+
+Частный случай --- натуральная система.
+\begin{gather}
+L(x, \dot{x}) = \frac{1}{2} m(x) \dot{x}^2 - U(x)\\
+H(x, \dot{x}) = \frac{1}{2} m \dot{x}^2 + U(x) = E \Rightarrow \dot{x} = \pm \sqrt{\frac{2}{m}\left(E- U(x)\right)}\\
+\boxed{t = \pm \int^x \sqrt{\frac{m(x)}{2} \frac{\dd{x}}{\sqrt{E - U(x)}}}},
+\end{gather}
+знак в начале определяется начальными условиями, меняется в точке разворота, где знаменатель обращается в нуль, то есть $U(x) = E$. 
+\begin{gather}
+p(x) = \pdv{L}{\dot{x}} = m(x) \dot{x} = \pm \sqrt{2m (E - U)}\\
+\pdv{p}{E} = \sqrt{\frac{m}{2}}\frac{1}{\sqrt{E- U}} \Rightarrow t = \pm \pdv{E} \int^x p (x, E) \dd{x},
+\end{gather}
+а интеграл --- площадь под графиком $p(x)$.
+\begin{dfn}
+$U(x) < E $ --- область возможного движения, иначе мы переходим в комплексное время, что запрещено в классической механике.
+\end{dfn}
+\begin{dfn}
+$U(x) = E$ --- точки разворота.
+\end{dfn}
+
+Фазовый портрет обладает зеркальной симметрией относительно оси $x$.
+$[x_3, \infty]$ --- инфинитное движение.
+
+\[\dot{x} \sim \sqrt{E - U(x)} \sim \pm \sqrt{x - x_1}\]
+$\dot{x} \sim \pm \sqrt{(x - x_0)^2} = \pm \abs{x-x_0}$ --- в состоянии равновесия с асимптотами $\left(\pdv{U(x_0)}{x} =0\right)$.
+
+\subsubsection{Диссипативные одномерные системы}
+В общем случае способа решения в квадратурах для диссипативных систем нет. И оказывается, что все известные интегрируемые диссипативные системы на самом деле не по-настоящему диссипативные. Поясним, о чём идёт речь. Вспомним консервативную задачу $L = \frac{1}{2} m(x) \dot{x}^2 - U(x)$ и посмотрим, какому уравнению движения такой лагранжиан соответствует (а интересует нас уравнение вида $\ddot{x} = F(t, x, \dot{x})$).
+\begin{equation}
+L = \frac{1}{2} m(x) \dot{x}^2 - U(x) \Rightarrow m\ddot{x} + \frac{1}{2} \pdv{m}{x} \dot{x}^2 = -  \pdv{U}{x} \Rightarrow \begin{cases}
+\ddot{x} = f(x) - \mu (x) \dot{x}^2,\; \text{где}\\
+f(x) = - \frac{1}{m(x)} \pdv{U}{x}, \; \text{а} \\
+\mu({x}) = \frac{1}{2m} \pdv{m}{x}, 
+\end{cases}
+\end{equation}
+и мы можем получить решение в квадратурах для любых $f(x)$ и $\mu(x)$:
+\begin{align} 
+\mu({x}) &= \frac{1}{2m} \pdv{m}{x} \Rightarrow \mu = \pdv{x}(\ln \sqrt{m}) \Rightarrow m = \left( e^{\int \mu \dd{x}}\right)^2,\\
+f(x) &= - \frac{1}{m(x)} \pdv{U}{x} \Rightarrow U = - \int m f \dd{x}.
+\end{align}
+Задачи вида $\ddot{x} + \omega_0^2 x + \mu \dot{x}^n =0,$ где $n = 2k$, допускают решение в квадратурах, в системе <<псевдотрение>>. При $n = 2k +1$ трение уже истинное, поскольку <<штука>> $\dot{x} \cdot \mu \dot{x}^n$ знакоопределена, а она управляет скоростью вытекания энергии:
+\begin{equation}
+ H_0 = \frac{1}{2} \dot{x}^2 + \frac{\omega^2}{2}x^2 \Rightarrow \dv{H_0}{t} = - \mu \dot{x}^{n+1}.
+ \end{equation} 
+Но можно и при $n = 2k$ сделать трение: достаточно добавить сигнум $\ddot{x} + \omega_0^2 x + \mu \sign \dot{x} \cdot \dot{x}^n = 0,$ при $n = 2k$ получаем трение, при $n = 2k +1$ --- псевдотрение.
+\begin{ex}[n= 0]
+Как выглядит фазовый потрет системы $\ddot{x} + \omega_0^2 x + \mu = 0$? А если добавить сигнум, как увидеть, что задача стала диссипативной?
+Как выглядит настоящее диссипативное решение? Сшиваем по непрерывности два решения. Зона застоя.
+
+Когда рисуем сигнум скорости, говорим, что фазовой фазовый портрет системы получается из фазового портрета системы без сигнума путём склейки: разрезаем по горизонтальной прямой, с помощью сигнума разворачиваем и склеиваем по непрерывности.
+
+\emph{H/w} $\sign \dot{x} \cdot \dot{x}$ --- задача с трением --- нарисовать фазовый портрет, зная ФП консервативной системы.
+\end{ex}
+
+\paragraph{Тривиальные случаи}
+$\dot{x} = F(v) \Rightarrow \dot{v} = F(v) \Rightarrow v(t) \Rightarrow x(t) \int v \dd{t}$
+
+\subsubsection{Качественный анализ на фазовой плоскости}
+...
+\begin{ex}[Линейное трение в системе можно учитывать с помощью чисто лагранжевой задачи с нестационарным лагранжианом]
+\begin{align}
+L &= \frac{1}{2} \dot{x}^2 - U(x) &  &\longrightarrow &  \ddot{x} &= - \pdv{U}{x} = f(x),\\
+\intertext{и в эту задачу мы можем добавить линейное трение:}
+L &= \left(\frac{1}{2} \dot{x}^2 - U\right) e^{2\gamma t} &  &\longrightarrow & p &= \pdv{L}{\dot{x}} = \dot{x} e^{2 \gamma t}\\
+& & & & \dot{p} &=(\ddot{x} + 2\gamma \dot{x})e^{2\gamma t} = \pdv{L}{x} = -\pdv{U}{x} e^{2\gamma t} 
+\end{align}
+И последнее равенство, которое можно сократить на $e^{2\gamma t}$ является следствием одной теоремы\dots
+\end{ex}
+\begin{pst}
+\begin{equation}
+\begin{rcases}
+\ddot{x} = F(t, x, \dot{x})\\
+s =1
+\end{rcases}
+\Rightarrow
+ \exists \left.
+\begin{matrix} 
+L(t, x, \dot{x})\\
+\mu (t, x, \dot{x})\neq 0
+\end{matrix}
+\right|\; (\ddot{x} - F) \cdot \mu = \dv{t} \pdv{L}{\dot{x}} - \pdv{L}{x}
+\end{equation}
+\end{pst}
+
+\begin{pst}
+\begin{equation}
+\ddot{x} = F(x, \dot{x}) \Rightarrow
+\exists \;
+\begin{matrix} 
+L(x, \dot{x})\\
+\mu (x, \dot{x})
+\end{matrix}
+\quad \ldots
+\end{equation}
+\end{pst}
+\begin{ex}
+\begin{equation}
+\ddot{x} + \omega^2 x + 2\gamma \dot{x} = 0 \Leftarrow L = \frac{\dot{x} + \gamma x}{\gamma x} \arctg \frac{\dot{x} + \gamma x}{\omega x} -\frac{\omega}{2\gamma} \ln \left( \omega^2 x^2 + (\dot{x} + \gamma x)^2 \right)\footnote{\emph{H/w} проверить. См. статью \cite{Shalashov_2017}.}
+\end{equation}
+\begin{equation}
+\begin{cases}
+x(t) = A e^{-\gamma t} \sin (\omega t + \gamma)\\
+p(t)  = \pdv{L}{\dot{x}}\; \text{уходит в бесконечность за конечное время,}
+\end{cases}
+\end{equation}
+движение инфинитно.
+\end{ex}
