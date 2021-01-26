@@ -7,6 +7,8 @@
 \usepackage{graphicx, xcolor}
 \usepackage{cmap}
 
+%\usepackage{concrete}
+
 \usepackage[unicode, pdftex]{hyperref}
 \hypersetup{linkcolor=blue, urlcolor=blue, colorlinks=true}
 \usepackage{hyphenat}
@@ -54,6 +56,7 @@
 \theoremstyle{definition}
 \newtheorem{dfn}{Определение}[section]
 \newtheorem{cns}[thm]{Следствие}
+\newtheorem{proposition}{Предложение}[section]
 
 \theoremstyle{remark}
 \newtheorem{task}{Задача}[section]
@@ -72,11 +75,11 @@
 \mathtoolsset{showmanualtags=true}
 
 \begin{center}
-\Huge{\textbf{Теоретическая механика}}
+\Large{\textbf{Конспекты лекций по теоретической механике}}
 \end{center}
 \tableofcontents
 \newpage
-\input{section1.tex}
+\input{section1}
 \section{Механика Лагранжа}
 \input{bridging}
 \newpage
@@ -85,7 +88,62 @@
 
 \section{Интегрируемые задачи механики}
 \input{integration_eq_of_motion}
+\subsubsection{Периодическое движение в одномерных консервативных системах}
+Консервативная система --- система, которая задаётся лагранжианом $L(x, \dot{x}),$ но мы ограничим круг задач натуральными системами, то есть будем считать, что $L(x, \dot{x}) = \frac{m(x)}{2} \dot{x}^2 - U(x),$ и часть времени будет полагать, что $m$ --- константа. Ранее мы договорились, что в таких системах всякое финитное движение периодическое: это видно по графику потенциальной энергии: движение сосредоточено между точками разворота, где энергия $U(x) < E,$ $E$ --- константа, определяемая начальными условиями задачи . Выпишем формулы, которые у нас получились,
+\begin{gather}
+U(x_{1,2}) = E,
+\end{gather}
+\begin{equation}
+T(E) = 2 \int_{t_1}^{t_2} \dd{t} = \left| \dd{t} = \frac{\dd{x}}{v(x)} = \sqrt{\frac{m}{2}} \frac{\dd{x}}{\sqrt{E - U(x)}} \right| = \int\limits_{x_1 (E)}^{x_2 (E)} \frac{\sqrt{2m}\dd{x}}{\sqrt{E - U(x)}}\footnote{Не забываем, что $\frac{m \dot{x}^2}{2} + U = E$.}, \label{period_formula}
+\end{equation}
+и дальше этот раздел будет в основном посвящён анализу формулы \eqref{period_formula}.
 
+Вспомним, как дифференцировать неопределённые интегралы. Сначала надо прокоммутировать интеграл и производную, а потом вспомнить, что пределы зависят от параметра:
+\begin{equation}
+\pdv{E} \int\limits_{x_1 (E)}^{x_2 (E)} f(x, E) \dd{x} = \int\limits_{x_1}^{x_2} \pdv{E} f(x, E) \dd{x} - \pdv{x_2}{E} f(x_2, E) - \pdv{x_1}{E} f(x_1, E).
+\end{equation}
+
+Понять, что несобственный интеграл в формуле \eqref{period_formula} сходится, можно, разложив подынтегральную функцию в ряд, который сходится равномерно. Если же первых член разложения становится равным нулю, то интеграл перестаёт сходиться.
+
+Отметим ещё один интересный факт: $\frac{\sqrt{m}}{\sqrt{E - U}} = 2 \pdv{E} \sqrt{m} \sqrt{E - U},$ и тогда несложно заметить, что
+\begin{equation}
+ \boxed{T(E) = 2 \pdv{E}  \int\limits_{x_1}^{x_2} \underbrace{\sqrt{2m (E- U)} }_{p(x) \equiv \pdv{L}{\dot{x}} = m\dot{x}}\dd{x}}, \label{T_from_E}
+ \end{equation} 
+ построив график, получим ещё одну замечательную формулу:
+ \begin{equation}
+ T(E) = \pdv{E} \oint p(x, E) \dd{x},
+ \end{equation}
+ то есть выбранный уровень энергии определяет на фазовой плоскости замкнутую кривую, и скорость изменения площади изменения площади внутри этой кривой, в зависимости от энергии, это и есть период.\footnote{$\oint p \dd{x}$ --- адиабатический инвариант. \index{Адиабатический инвариант}}
+ 
+\subsubsection{Теория возмущений для периодического движения}
+Пусть есть некоторая задача, про которую мы всё знаем...
+Рассмотрим новую задачу в потенциале $U(x)  + \delta U(x),$ где $\delta U(x)$ --- малая (в смысле неисчезновения в ряде Тейлора) поправка. Можем ли мы найти новый период, не решая задачу заново? То есть, как найти часть $\delta T(E)$ в первом неисчезающем приближении по $\delta U(x)$. Прежде, чем ответить на этот вопрос, рассмотрим более простую задачу --- попробуем найти, как изменятся точки разворота. Вспомним, что в исходной задаче $U(x_1) = E,$ а $x(t)$ и $T(E)$ мы знаем. Тогда мы можем сказать, что 
+\begin{gather}
+U(x_1 + \delta x_1) + \delta U(x_1 + \delta x_1) = E,
+\end{gather}
+то есть в потенциале с возмущением новая точка разворота, и будем пользоваться малостью, раскладывая слагаемые в левой части:
+\begin{gather}
+U(x_1 + \delta x_1) = U(x_1) + U'(x_1) \delta x_1 + \ldots,\\
+\delta U(x_1 + \delta x_1) = \delta U(x_1) + \ldots,
+\end{gather}
+но $U(x_1)$ это в точности $E,$ как было упомянуто ранее, поэтому 
+\begin{equation}
+\var{x_1} \approx - \frac{\var{U(x_1)}}{U'(x_1)},
+\end{equation}
+но это, очевидно, не работает при $U'(x_1) = 0,$ и нам нужен следующий член в разложении\dots
+
+... Стартуем с выражения \eqref{T_from_E}, которое будем раскладывать, подставив $U(x) + \delta U(x)$ вместо $U$:
+\begin{gather}
+ T(E) + \delta T(E) = 2 \pdv{E} \int_{x_1 + \delta x_1}^{x_2 + \delta x_2} \sqrt{2m (E- U - \delta U)} \dd{x},\\
+ \intertext{и начинаем раскладывать:}
+\delta T(E) = 2 \pdv{E} \left\{ \int\limits_{x_1}^{x_2} \sqrt{2m} \left(- \frac{\delta U}{2} \right) \frac{\dd{x}}{\sqrt{E- U}} + \delta x_2 \left. \sqrt{2m (E - U - \delta U)}\right|_{x_2} - \delta x_1 \left. \sqrt{2m (E - U - \delta U)}\right|_{x_1} \right\},
+ \end{gather}
+ интеграл, как нам бы и хотелось, оказывается, пропорционален $\delta U$, интегральные подстановки оказываются более высокого порядка малости ... поэтому, если получаем ненулевое первое слагаемое, то подстановки можем выкинуть, тогда
+ \begin{equation}
+ \delta T(E) = \pdv{E} \int\limits_{x_1}^{x_2} \frac{\sqrt{2m}\delta U}{\sqrt{E-U}} \dd{x} + 
+ \end{equation}
+\addcontentsline{toc}{section}{\indexname}
 \input{abridgement.ind}
+\addcontentsline{toc}{section}{\refname}
 \bibliography{library}
 \end{document}
